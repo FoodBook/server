@@ -7,7 +7,7 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoContent;
 /**
  * Created by lenkyun on 5/11/2558.
  */
-public class RegistrationHelper implements FoodbookType {
+public class RegistrationBuilder implements FoodbookType {
     // User
     private UserAuthenticationInfo authenticationInfo;
     private String username;
@@ -21,7 +21,7 @@ public class RegistrationHelper implements FoodbookType {
         return authenticationInfo;
     }
 
-    public RegistrationHelper setAuthenticationInfo(UserAuthenticationInfo authenticationInfo) {
+    public RegistrationBuilder setAuthenticationInfo(UserAuthenticationInfo authenticationInfo) {
         this.authenticationInfo = authenticationInfo;
         return this;
     }
@@ -30,7 +30,7 @@ public class RegistrationHelper implements FoodbookType {
         return username;
     }
 
-    public RegistrationHelper setUsername(String username) {
+    public RegistrationBuilder setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -39,7 +39,7 @@ public class RegistrationHelper implements FoodbookType {
         return firstname;
     }
 
-    public RegistrationHelper setFirstname(String firstname) {
+    public RegistrationBuilder setFirstname(String firstname) {
         this.firstname = firstname;
         return this;
     }
@@ -48,7 +48,7 @@ public class RegistrationHelper implements FoodbookType {
         return lastname;
     }
 
-    public RegistrationHelper setLastname(String lastname) {
+    public RegistrationBuilder setLastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
@@ -57,7 +57,7 @@ public class RegistrationHelper implements FoodbookType {
         return profilePicture;
     }
 
-    public RegistrationHelper setProfilePicture(PhotoContent profilePicture) {
+    public RegistrationBuilder setProfilePicture(PhotoContent profilePicture) {
         this.profilePicture = profilePicture;
         return this;
     }
@@ -66,7 +66,7 @@ public class RegistrationHelper implements FoodbookType {
         return coverPicture;
     }
 
-    public RegistrationHelper setCoverPicture(PhotoContent coverPicture) {
+    public RegistrationBuilder setCoverPicture(PhotoContent coverPicture) {
         this.coverPicture = coverPicture;
         return this;
     }

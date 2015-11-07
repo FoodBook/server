@@ -44,15 +44,21 @@ public class TokenProvider {
         return null;
     }
 
+    @Deprecated
     public String getUserId(String token){
         Token tokenObj = decodeToken(token);
 
         return tokenObj != null ? tokenObj.getUid() : null;
     }
 
+    public boolean isTokenTimeout(Token token){
+        return (System.currentTimeMillis() / 1000.0) > (token != null ? token.getLimit() : 0);
+    }
+
+    @Deprecated
     public boolean isTokenTimeout(String token){
         Token tokenObj = decodeToken(token);
-        return (System.currentTimeMillis() / 1000) <= (tokenObj != null ? tokenObj.getLimit() : 0);
+        return (System.currentTimeMillis() / 1000.0) > (tokenObj != null ? tokenObj.getLimit() : 0);
     }
 
     public String getToken(User user, long tokenLive){
@@ -60,7 +66,6 @@ public class TokenProvider {
         Token token = new Token();
 
         token.setUid(user.getId());
-        token.setUsername(user.getUsername());
         token.setLimit((System.currentTimeMillis() / 1000) + tokenLive);
 
         UUID salt = UUID.randomUUID();

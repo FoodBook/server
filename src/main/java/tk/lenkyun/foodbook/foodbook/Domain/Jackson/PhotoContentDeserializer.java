@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import org.apache.tomcat.util.codec.binary.Base64;
+import tk.lenkyun.foodbook.foodbook.Utils.Base64Utils;
 
 import java.io.IOException;
 
@@ -14,6 +15,6 @@ import java.io.IOException;
 public class PhotoContentDeserializer extends JsonDeserializer<byte[]> {
     @Override
     public byte[] deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-        return Base64.decodeBase64(p.getText().getBytes());
+        return Base64Utils.decode(p.getText());
     }
 }

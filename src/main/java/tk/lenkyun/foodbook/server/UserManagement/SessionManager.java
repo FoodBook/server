@@ -17,7 +17,7 @@ public class SessionManager {
     private UserAdapter userAdapter;
 
     public boolean isTokenValid(String token){
-        if(!tokenProvider.isTokenTimeout(token))
+        if(tokenProvider.isTokenTimeout(token))
             return false;
 
         String id = tokenProvider.getUserId(token);

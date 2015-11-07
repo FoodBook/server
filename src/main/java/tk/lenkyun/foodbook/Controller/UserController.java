@@ -51,6 +51,15 @@ public class UserController {
             if(tokenProvider.getUserId(token).equals(uid)){
                 return requestMe(token);
             }else{
+                try {
+                    Long.parseLong(uid);
+                } catch(NumberFormatException e){
+                    wrapper.setError(1);
+                    wrapper.setDetail("Invalid user id.");
+                    wrapper.setResult(null);
+
+                    return wrapper;
+                }
 
                 User user = userAdapter.getUserById(uid);
                 if(user != null) {

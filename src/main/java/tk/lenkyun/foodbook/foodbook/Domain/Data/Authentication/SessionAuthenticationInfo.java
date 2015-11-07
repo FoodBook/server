@@ -4,15 +4,14 @@ package tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication;
  * Created by lenkyun on 15/10/2558.
  */
 public class SessionAuthenticationInfo extends AuthenticationInfo {
-    public static final String AUTH_TYPE = "app/session";
+    public static final String AUTH_TYPE = "oauth";
     private String token;
-    private String userId, username;
+    private String userId;
 
-    public SessionAuthenticationInfo(String userId, String username, String token) {
+    public SessionAuthenticationInfo(String userId, String token) {
         super(AUTH_TYPE);
         this.token = token;
         this.userId = userId;
-        this.username = username;
     }
 
     @Override
@@ -37,14 +36,6 @@ public class SessionAuthenticationInfo extends AuthenticationInfo {
 
     @Override
     public void setAuthenticationType(String authenticateInfo) {
-        throw new UnsupportedOperationException("No support for FacebookAuthenticationInfo to set new token. (Must request from Tools)");
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getUsername() {
-        return username;
+        return;
     }
 }

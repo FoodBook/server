@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework:spring-tx:4.2.3.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.2.3.BUILD-SNAPSHOT/b5aa3ac1077393b29605cd46e13e3e3b68841d0d/spring-tx-4.2.3.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.2.3.BUILD-SNAPSHOT/3c07401c54f0b438ee2006a56a587729f11e6083/spring-tx-4.2.3.BUILD-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.2.3.BUILD-SNAPSHOT/2d8a7a8f29924955f955929d09c72bc0911777ea/spring-tx-4.2.3.BUILD-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.2.3.BUILD-SNAPSHOT/789963f05462aeea0ae591e0ab4588d505bf473f/spring-tx-4.2.3.BUILD-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

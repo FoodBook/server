@@ -6,12 +6,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
-import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.AuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.Profile;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
-import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationHelper;
+import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.RowsetParser;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.UserParser;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
@@ -20,7 +19,6 @@ import tk.lenkyun.foodbook.server.UserManagement.Exception.DuplicateUserExceptio
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -132,13 +130,13 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
     }
 
     @Override
-    public User createUser(RegistrationHelper registrationHelper, PhotoItem profile_picture, PhotoItem profile_cover) {
-        if(getUserByUsername(registrationHelper.getUsername()) != null)
+    public User createUser(RegistrationBuilder registrationBuilder, PhotoItem profile_picture, PhotoItem profile_cover) {
+        if(getUserByUsername(registrationBuilder.getUsername()) != null)
             throw new DuplicateUserException("");
 
         StringBuilder query = new StringBuilder();
-        User user = new User(null, registrationHelper.getUsername(),
-                new Profile(registrationHelper.getFirstname(), registrationHelper.getLastname(),
+        User user = new User(null, registrationBuilder.getUsername(),
+                new Profile(registrationBuilder.getFirstname(), registrationBuilder.getLastname(),
                     profile_picture));
         Map<String, Object> list = new UserParser().parse(user);
 
@@ -149,7 +147,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
 
         SqlRowSet result = queryForRowSet(query.toString(), RowsetParser.getValueList(list));
 
-        return getUserByUsername(registrationHelper.getUsername());
+        return getUserByUsername(registrationBuilder.getUsername());
     }
 
     @Override

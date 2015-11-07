@@ -16,7 +16,7 @@ public class DESSessionAdapter implements SessionAdapter {
 
     @Override
     public SessionAuthenticationInfo createSession(User user, long timeout) {
-        return new SessionAuthenticationInfo(user.getId(), user.getUsername(),
+        return new SessionAuthenticationInfo(user.getId(),
                 tokenProvider.getToken(user, timeout));
     }
 
