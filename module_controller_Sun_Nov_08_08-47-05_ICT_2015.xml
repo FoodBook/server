@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_controller" default="compile.module.controller">
+  <dirname property="module.controller.basedir" file="${ant.file.module_controller}"/>
+  
+  <property name="module.jdk.home.controller" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.controller" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.controller" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.controller" value="-encoding x-windows-874 -source 8 ${compiler.args}"/>
+  
+  <property name="controller.output.dir" value="${module.controller.basedir}/build/classes/main"/>
+  <property name="controller.testoutput.dir" value="${module.controller.basedir}/build/classes/test"/>
+  
+  <path id="controller.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="controller.module.production.classpath">
+    <path refid="${module.jdk.classpath.controller}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-rest:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-social-facebook:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-webmvc:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-jdbc:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-config:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-core:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-web:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-facebook:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.16.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-validation:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-core:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_com.github.fge:json-patch:1.7.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:log4j-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-validator:5.2.2.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.hateoas:spring-hateoas:0.19.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:1.11.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath"/>
+    <path refid="library.gradle:_org.atteo:evo-inflector:1.2.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:jackson-coreutils:1.6.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.0.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.1.0.classpath"/>
+    <path refid="library.gradle:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.gradle:_com.github.fge:msg-simple:1.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:btf:1.2.classpath"/>
+    <path refid="library.gradle:_com.mchange:c3p0:0.9.5.classpath"/>
+    <path refid="library.gradle:_com.google.appengine.tools:appengine-gcs-client:0.5.classpath"/>
+    <path refid="library.gradle:_com.mchange:mchange-commons-java:0.2.9.classpath"/>
+    <path refid="library.gradle:_com.google.appengine:appengine-api-1.0-sdk:1.9.28.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:19.0-rc2.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.2.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-storage:v1-rev15-1.19.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.1.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.gradle:_javax.jdo:jdo2-api:2.3-eb.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jdo:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.transaction:transaction-api:1.1.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+  </path>
+  
+  <path id="controller.runtime.production.module.classpath">
+    <pathelement location="${controller.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-rest:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-social-facebook:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-webmvc:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-jdbc:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-config:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-core:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-web:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-facebook:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.16.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-validation:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-core:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_com.github.fge:json-patch:1.7.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:log4j-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-validator:5.2.2.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.hateoas:spring-hateoas:0.19.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:1.11.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath"/>
+    <path refid="library.gradle:_org.atteo:evo-inflector:1.2.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:jackson-coreutils:1.6.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.0.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.1.0.classpath"/>
+    <path refid="library.gradle:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.gradle:_com.github.fge:msg-simple:1.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:btf:1.2.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.37.classpath"/>
+    <path refid="library.gradle:_com.mchange:c3p0:0.9.5.classpath"/>
+    <path refid="library.gradle:_com.google.appengine.tools:appengine-gcs-client:0.5.classpath"/>
+    <path refid="library.gradle:_com.mchange:mchange-commons-java:0.2.9.classpath"/>
+    <path refid="library.gradle:_com.google.appengine:appengine-api-1.0-sdk:1.9.28.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:19.0-rc2.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.2.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-storage:v1-rev15-1.19.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.1.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.gradle:_javax.jdo:jdo2-api:2.3-eb.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jdo:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.transaction:transaction-api:1.1.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+  </path>
+  
+  <path id="controller.module.classpath">
+    <path refid="${module.jdk.classpath.controller}"/>
+    <pathelement location="${controller.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-rest:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-social-facebook:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-webmvc:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-jdbc:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-config:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-core:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-web:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-facebook:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.16.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-validation:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-core:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_com.github.fge:json-patch:1.7.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:log4j-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-validator:5.2.2.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.hateoas:spring-hateoas:0.19.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:1.11.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath"/>
+    <path refid="library.gradle:_org.atteo:evo-inflector:1.2.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:jackson-coreutils:1.6.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.0.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.1.0.classpath"/>
+    <path refid="library.gradle:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.gradle:_com.github.fge:msg-simple:1.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:btf:1.2.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:1.10.19.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.1.classpath"/>
+    <path refid="library.gradle:_com.mchange:c3p0:0.9.5.classpath"/>
+    <path refid="library.gradle:_com.google.appengine.tools:appengine-gcs-client:0.5.classpath"/>
+    <path refid="library.gradle:_com.mchange:mchange-commons-java:0.2.9.classpath"/>
+    <path refid="library.gradle:_com.google.appengine:appengine-api-1.0-sdk:1.9.28.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:19.0-rc2.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.2.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-storage:v1-rev15-1.19.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.1.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.gradle:_javax.jdo:jdo2-api:2.3-eb.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jdo:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.transaction:transaction-api:1.1.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+  </path>
+  
+  <path id="controller.runtime.module.classpath">
+    <pathelement location="${controller.testoutput.dir}"/>
+    <pathelement location="${controller.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-data-rest:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-jdbc:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-social-facebook:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.1.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-webmvc:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-jdbc:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jdbc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-config:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-core:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-web:1.1.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.social:spring-social-facebook:2.0.2.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.16.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-validation:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.6.1.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-rest-core:2.4.0.release.classpath"/>
+    <path refid="library.gradle:_com.github.fge:json-patch:1.7.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jcl-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat:tomcat-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-tx:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_javax.inject:javax.inject:1.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.slf4j:log4j-over-slf4j:1.7.12.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.0.28.classpath"/>
+    <path refid="library.gradle:_org.hibernate:hibernate-validator:5.2.2.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.springframework.hateoas:spring-hateoas:0.19.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.data:spring-data-commons:1.11.0.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath"/>
+    <path refid="library.gradle:_org.atteo:evo-inflector:1.2.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:jackson-coreutils:1.6.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:1.1.0.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.0.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.1.0.classpath"/>
+    <path refid="library.gradle:_aopalliance:aopalliance:1.0.classpath"/>
+    <path refid="library.gradle:_com.github.fge:msg-simple:1.1.classpath"/>
+    <path refid="library.gradle:_com.github.fge:btf:1.2.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:5.1.37.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-test:1.3.0.build-snapshot.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.mockito:mockito-core:1.10.19.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-library:1.3.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-test:4.2.3.build-snapshot.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.1.classpath"/>
+    <path refid="library.gradle:_com.mchange:c3p0:0.9.5.classpath"/>
+    <path refid="library.gradle:_com.google.appengine.tools:appengine-gcs-client:0.5.classpath"/>
+    <path refid="library.gradle:_com.mchange:mchange-commons-java:0.2.9.classpath"/>
+    <path refid="library.gradle:_com.google.appengine:appengine-api-1.0-sdk:1.9.28.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:19.0-rc2.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.2.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-storage:v1-rev15-1.19.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.1.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client-servlet:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.gradle:_javax.jdo:jdo2-api:2.3-eb.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jdo:1.20.0.classpath"/>
+    <path refid="library.gradle:_javax.transaction:transaction-api:1.1.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-appengine:1.20.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.20.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.controller">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.controller">
+    <patternset refid="excluded.from.module.controller"/>
+  </patternset>
+  
+  <path id="controller.module.sourcepath">
+    <dirset dir="${module.controller.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="controller.module.test.sourcepath">
+    <dirset dir="${module.controller.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.controller" depends="compile.module.controller.production,compile.module.controller.tests" description="Compile module controller"/>
+  
+  <target name="compile.module.controller.production" depends="register.custom.compilers" description="Compile module controller; production classes">
+    <mkdir dir="${controller.output.dir}"/>
+    <javac2 destdir="${controller.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.controller}/javac">
+      <compilerarg line="${compiler.args.controller}"/>
+      <bootclasspath refid="controller.module.bootclasspath"/>
+      <classpath refid="controller.module.production.classpath"/>
+      <src refid="controller.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.controller"/>
+    </javac2>
+    
+    <copy todir="${controller.output.dir}">
+      <fileset dir="${module.controller.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.controller.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.controller.tests" depends="register.custom.compilers,compile.module.controller.production" description="compile module controller; test classes" unless="skip.tests">
+    <mkdir dir="${controller.testoutput.dir}"/>
+    <javac2 destdir="${controller.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.controller}/javac">
+      <compilerarg line="${compiler.args.controller}"/>
+      <bootclasspath refid="controller.module.bootclasspath"/>
+      <classpath refid="controller.module.classpath"/>
+      <src refid="controller.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.controller"/>
+    </javac2>
+    
+    <copy todir="${controller.testoutput.dir}">
+      <fileset dir="${module.controller.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.controller" description="cleanup module">
+    <delete dir="${controller.output.dir}"/>
+    <delete dir="${controller.testoutput.dir}"/>
+  </target>
+</project>
