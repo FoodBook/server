@@ -42,6 +42,8 @@ dependencies {
 
     compile 'com.google.appengine.tools:appengine-gcs-client:0.5'
 
+    compile 'org.apache.commons:commons-collections4:4.0'
+
     runtime('mysql:mysql-connector-java')
     testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
