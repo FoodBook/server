@@ -1,16 +1,17 @@
 package tk.lenkyun.foodbook.Controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.FacebookAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.SessionAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.ResponseWrapper;
 import tk.lenkyun.foodbook.server.Config;
+import tk.lenkyun.foodbook.server.Exception.NoPermissionException;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.SessionManager;
-import tk.lenkyun.foodbook.server.UserManagement.UserAuthentication;
+import tk.lenkyun.foodbook.server.UserManagement.UserManager;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.TokenProvider;
 
 /**
@@ -19,7 +20,7 @@ import tk.lenkyun.foodbook.server.UserManagement.Utils.TokenProvider;
 @RestController
 public class OAuthController {
     @Autowired
-    UserAuthentication userAuthentication;
+    UserManager userManager;
     @Autowired
     TokenProvider tokenProvider;
     @Autowired
@@ -38,21 +39,36 @@ public class OAuthController {
     public @ResponseBody
     ResponseWrapper<SessionAuthenticationInfo> sessionLogin(@RequestBody UserAuthenticationInfo user) {
         ResponseWrapper<SessionAuthenticationInfo> wrapper = new ResponseWrapper<>();
-        SessionAuthenticationInfo session = userAuthentication.login(user);
+        SessionAuthenticationInfo session = userManager.login(user);
 
         if (session == null) {
             wrapper.setError(1);
             wrapper.setDetail("Invalid credential.");
-            wrapper.setResult(null);
-
-            return wrapper;
         } else {
-            wrapper.setError(0);
-            wrapper.setDetail(null);
             wrapper.setResult(session);
-
-            return wrapper;
         }
+        return wrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/oauth/login/facebook")
+    public @ResponseBody
+    ResponseWrapper<SessionAuthenticationInfo> sessionLoginFacebook(@RequestBody FacebookAuthenticationInfo user) {
+        ResponseWrapper<SessionAuthenticationInfo> wrapper = new ResponseWrapper<>();
+
+        try {
+            SessionAuthenticationInfo session = userManager.login(user);
+
+            if (session == null) {
+                wrapper.setError(1);
+                wrapper.setDetail("Invalid credential.");
+            } else {
+                wrapper.setResult(session);
+            }
+        }catch (NoPermissionException e){
+            wrapper.setError(1);
+            wrapper.setDetail("Invalid credential.");
+        }
+        return wrapper;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/oauth/renew")
@@ -65,13 +81,10 @@ public class OAuthController {
             SessionAuthenticationInfo session = new SessionAuthenticationInfo(id,
                     tokenProvider.getToken(userAdapter.getUserById(id), Config.SESSION_SHORT));
 
-            wrapper.setError(0);
-            wrapper.setDetail(null);
             wrapper.setResult(session);
         }else{
             wrapper.setError(1);
             wrapper.setDetail("Result invalid");
-            wrapper.setResult(null);
         }
 
         return wrapper;

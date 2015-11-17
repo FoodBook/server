@@ -18,4 +18,8 @@ public interface UserAdapter {
     User updateUser(User user);
     User createUser(RegistrationBuilder registrationBuilder, PhotoItem profile_picture, PhotoItem profile_cover);
     void removeUser(String id);
+
+    Boolean getIsFollowing(User user, User following);
+    Boolean setFollowing(User user, User following);
+    Boolean unsetFollowing(User user, User following);
 }

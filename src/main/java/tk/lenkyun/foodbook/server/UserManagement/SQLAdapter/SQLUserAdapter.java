@@ -161,4 +161,62 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         Object[] parameters = {Long.parseLong(id)};
         SqlRowSet result = queryForRowSet(query.toString(), parameters);
     }
+
+    @Override
+    public Boolean getIsFollowing(User user, User following) {
+        String querer = "select count(*) from %s where %s = ? AND %s = ?";
+        querer = String.format(querer,
+                env.getProperty("database.table.follow"),
+                "uid", "follow_uid"
+                );
+        Object[] value = new Object[]{
+                user.getId(), following.getId()
+        };
+
+        return queryForObject(querer, value, Integer.class) > 0;
+    }
+
+    @Override
+    public Boolean setFollowing(User user, User following) {
+        String querer = "insert ignore into %s (%s, %s) values (?, ?)";
+
+        querer = String.format(querer,
+                env.getProperty("database.table.follow"),
+                "uid", "follow_id"
+        );
+
+        Object[] values = new Object[]{
+                user.getId(),
+                following.getId()
+        };
+
+        Integer id = update(
+                querer,
+                values
+        );
+
+        return true;
+    }
+
+    @Override
+    public Boolean unsetFollowing(User user, User following) {
+        String querer = "delete from %s where %s = ? and %s = ?";
+
+        querer = String.format(querer,
+                env.getProperty("database.table.follow"),
+                "uid", "follow_id"
+        );
+
+        Object[] values = new Object[]{
+                user.getId(),
+                following.getId()
+        };
+
+        Integer id = update(
+                querer,
+                values
+        );
+
+        return false;
+    }
 }

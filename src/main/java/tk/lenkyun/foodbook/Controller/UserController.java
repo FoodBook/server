@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.ResponseWrapper;
+import tk.lenkyun.foodbook.server.Exception.NoPermissionException;
 import tk.lenkyun.foodbook.server.PostManagement.PostFeed;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.SessionManager;
+import tk.lenkyun.foodbook.server.UserManagement.UserManager;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.TokenProvider;
 
@@ -27,6 +29,8 @@ public class UserController {
     UserAdapter userAdapter;
     @Autowired
     PostFeed postFeed;
+    @Autowired
+    UserManager userManager;
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/me")
     public ResponseWrapper<User> requestMe(@RequestParam(value = "token", required = false) String token){
@@ -119,4 +123,110 @@ public class UserController {
 
         return wrapper;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/follow")
+    public @ResponseBody
+    ResponseWrapper<Boolean> getIsFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<User> following = requestUserInfo(id, tokenString);
+        if(following.getError() != 0){
+            responseWrapper.setError(following.getError());
+            responseWrapper.setDetail(following.getDetail());
+            return responseWrapper;
+        }
+
+        if(token.getUid().equals(following.getResult().getId())){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Not able to follow yourself.");
+            return responseWrapper;
+        }
+
+        try {
+            responseWrapper.setResult(
+                    userManager.getFollowingUserStatus(token, following.getResult()));
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/follow")
+    public @ResponseBody
+    ResponseWrapper<Boolean> setFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<User> following = requestUserInfo(id, tokenString);
+        if(following.getError() != 0){
+            responseWrapper.setError(following.getError());
+            responseWrapper.setDetail(following.getDetail());
+            return responseWrapper;
+        }
+
+        if(token.getUid().equals(following.getResult().getId())){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Not able to follow yourself.");
+            return responseWrapper;
+        }
+
+        try {
+            responseWrapper.setResult(
+                    userManager.setFollowingUser(token, following.getResult()));
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/unfollow")
+    public @ResponseBody
+    ResponseWrapper<Boolean> setUnFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<User> following = requestUserInfo(id, tokenString);
+        if(following.getError() != 0){
+            responseWrapper.setError(following.getError());
+            responseWrapper.setDetail(following.getDetail());
+            return responseWrapper;
+        }
+
+        if(token.getUid().equals(following.getResult().getId())){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Not able to follow yourself.");
+            return responseWrapper;
+        }
+
+        try {
+            responseWrapper.setResult(
+                    userManager.unsetFollowingUser(token, following.getResult()));
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
+
 }

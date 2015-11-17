@@ -1,4 +1,4 @@
-package tk.lenkyun.foodbook.server.PostManagement.Exception;
+package tk.lenkyun.foodbook.server.Exception;
 
 /**
  * Created by lenkyun on 17/11/2558.

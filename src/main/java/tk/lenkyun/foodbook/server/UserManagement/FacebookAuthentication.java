@@ -10,12 +10,12 @@ import tk.lenkyun.foodbook.server.UserManagement.Exception.InvalidTokenException
  * Created by lenkyun on 5/11/2558.
  */
 public class FacebookAuthentication {
-    private UserAuthentication userAuthentication;
+    private UserManager userManager;
     private FacebookAdapter facebookAdapter;
     private UserAdapter userAdapter;
 
-    public FacebookAuthentication(UserAuthentication userAuthentication, FacebookAdapter facebookAdapter, UserAdapter userAdapter){
-        this.userAuthentication = userAuthentication;
+    public FacebookAuthentication(UserManager userManager, FacebookAdapter facebookAdapter, UserAdapter userAdapter){
+        this.userManager = userManager;
         this.facebookAdapter = facebookAdapter;
         this.userAdapter = userAdapter;
     }
@@ -32,6 +32,6 @@ public class FacebookAuthentication {
         if(user == null)
             return null;
 
-        return userAuthentication.login(user);
+        return userManager.login(user);
     }
 }

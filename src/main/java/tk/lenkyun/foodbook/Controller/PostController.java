@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Comment;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
 import tk.lenkyun.foodbook.foodbook.ResponseWrapper;
-import tk.lenkyun.foodbook.server.PostManagement.Exception.NoPermissionException;
+import tk.lenkyun.foodbook.server.Exception.NoPermissionException;
 import tk.lenkyun.foodbook.server.PostManagement.PostFeed;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
