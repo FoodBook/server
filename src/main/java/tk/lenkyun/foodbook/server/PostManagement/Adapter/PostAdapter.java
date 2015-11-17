@@ -21,4 +21,10 @@ public interface PostAdapter {
     void removeComment(Comment comment);
     Comment updateComment(Comment comment);
     Comment createComment(Comment comment);
+
+    Integer getRate(FoodPost foodPost);
+
+    Integer getRateMe(FoodPost foodPost, User userById);
+
+    Integer setRate(FoodPost foodPost, User user, int rate);
 }

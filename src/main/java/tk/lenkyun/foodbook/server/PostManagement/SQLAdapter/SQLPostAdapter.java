@@ -159,12 +159,70 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     }
 
     @Override
+    public Integer getRate(FoodPost foodPost) {
+        try {
+            Integer i = queryForObject(String.format("select AVG(%s) from %s where %s = ?",
+                            "score",
+                            env.getProperty("database.table.rate"),
+                            "pid"),
+                    new Object[]{foodPost.getId()}, Integer.class);
+
+            return i == null ? 0 : i;
+        }catch(EmptyResultDataAccessException ignored){
+            return null;
+        }
+    }
+
+    @Override
+    public Integer getRateMe(FoodPost foodPost, User user) {
+        try {
+            Integer i = queryForObject(String.format("select %s from %s where %s = ? and %s = ?",
+                            "score",
+                            env.getProperty("database.table.rate"),
+                            "pid", "uid"),
+                    new Object[]{foodPost.getId(), user.getId()}, Integer.class);
+
+            return i == null ? 0 : i;
+        }catch(EmptyResultDataAccessException ignored){
+            return null;
+        }
+    }
+
+    @Override
+    public Integer setRate(FoodPost foodPost, User user, int rate) {
+        String querer = "insert into %s (%s, %s, %s) values (?, ?, ?) on duplicate key update " +
+                "%s = ?";
+        querer = String.format(querer,
+                env.getProperty("database.table.rate"),
+                "pid", "uid", "score",
+                "score"
+                );
+
+        Object[] values = new Object[]{
+                foodPost.getId(),
+                user.getId(),
+                rate, rate
+        };
+
+        Integer id = update(
+                querer,
+                values
+        );
+
+        return getRate(foodPost);
+    }
+
+    @Override
     public Collection<Comment> getComments(FoodPost post) {
         try {
-            return query(String.format("select * from %s where %s = ?",
+            return query(String.format("select *, AVG(%s) from %s, %s where %s = ? and %s = ?",
+                            "rate",
                             env.getProperty("database.table.comment"),
-                            CommentMapper.ASSOC),
-                    new Object[]{post.getId()}, new CommentMapper());
+                            env.getProperty("database.table.rate"),
+                            CommentMapper.ASSOC,
+                            "pid"
+                            ),
+                    new Object[]{post.getId(), post.getId()}, new CommentMapper());
         }catch(EmptyResultDataAccessException ignored){
             return null;
         }

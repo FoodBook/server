@@ -27,6 +27,61 @@ public class PostController {
     @Autowired
     UserAdapter userAdapter;
 
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate/me")
+    public @ResponseBody
+    ResponseWrapper<Integer> getRateMe(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<FoodPost> foodPost = getFoodPost(id, tokenString);
+        if(foodPost.getError() != 0){
+            responseWrapper.setError(foodPost.getError());
+            responseWrapper.setDetail(foodPost.getDetail());
+            return responseWrapper;
+        }
+
+        try {
+            postFeed.getRateMe(token, foodPost.getResult());
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate")
+    public @ResponseBody
+    ResponseWrapper<Integer> getRate(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<FoodPost> foodPost = getFoodPost(id, tokenString);
+        if(foodPost.getError() != 0){
+            responseWrapper.setError(foodPost.getError());
+            responseWrapper.setDetail(foodPost.getDetail());
+            return responseWrapper;
+        }
+
+        try {
+            postFeed.getRate(token, foodPost.getResult());
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/delete")
     public @ResponseBody
@@ -113,6 +168,37 @@ public class PostController {
             responseWrapper.setDetail("Token expired.");
         }else {
             responseWrapper.setResult(comment);
+        }
+
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/comment")
+    public @ResponseBody
+    ResponseWrapper<Integer> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
+                                                    @RequestBody Integer inputRate){
+        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<FoodPost> foodPost = getFoodPost(id, tokenString);
+        if(foodPost.getError() != 0){
+            responseWrapper.setError(foodPost.getError());
+            responseWrapper.setDetail(foodPost.getDetail());
+            return responseWrapper;
+        }
+
+
+        try {
+            responseWrapper.setResult(postFeed.setRate(token, foodPost.getResult(), inputRate));
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
         }
 
         return responseWrapper;
