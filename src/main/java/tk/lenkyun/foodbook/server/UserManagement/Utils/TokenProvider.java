@@ -28,7 +28,7 @@ public class TokenProvider {
         } catch (NoSuchAlgorithmException ignored) {}
     }
 
-    private Token decodeToken(String token){
+    public Token decodeToken(String token){
         byte[] bytes = Base64.decodeBase64(token);
         ObjectMapper mapper = new ObjectMapper();
 

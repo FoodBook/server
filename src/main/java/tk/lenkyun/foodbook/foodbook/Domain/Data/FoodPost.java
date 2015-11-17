@@ -8,7 +8,7 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 /**
  * Created by lenkyun on 16/10/2558.
  */
-public class FoodPost {
+public class FoodPost implements FoodbookType {
     private String id;
     private List<Comment> commentList = new LinkedList<>();
     private FoodPostDetail postDetail;
@@ -53,6 +53,9 @@ public class FoodPost {
 
     public User getOwner() {
         return owner;
+    }
+    public void setOwner(User owner){
+        this.owner = owner;
     }
 
     public FoodPostDetail getPostDetail() {

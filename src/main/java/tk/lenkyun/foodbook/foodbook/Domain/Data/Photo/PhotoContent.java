@@ -12,6 +12,7 @@ public class PhotoContent implements FoodbookType, Content<byte[]> {
     @JsonDeserialize(using = PhotoContentDeserializer.class)
     protected byte[] content;
 
+    public PhotoContent(){}
     public PhotoContent(byte[] content) {
         this.content = content;
     }
@@ -23,6 +24,6 @@ public class PhotoContent implements FoodbookType, Content<byte[]> {
 
     @Override
     public void setContent(byte[] content) {
-        throw new UnsupportedOperationException("No support for PhotoContent to set its content.");
+        this.content = content;
     }
 }

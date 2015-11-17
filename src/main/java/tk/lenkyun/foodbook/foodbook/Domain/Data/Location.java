@@ -7,6 +7,8 @@ public class Location implements FoodbookType {
     public static class LatLng{
         public double latitude, longitude;
 
+        public LatLng(){}
+
         public LatLng(double latitude, double longitude){
             this.latitude = latitude;
             this.longitude = longitude;
@@ -16,6 +18,8 @@ public class Location implements FoodbookType {
     private String name;
     private LatLng coordinate;
     private Restaurant restaurant;
+
+    public Location(){}
 
     public Location(String name, LatLng coordinate){
         this(name, coordinate, null);

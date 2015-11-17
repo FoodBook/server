@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoContent;
 
 /**
@@ -11,6 +12,8 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoContent;
  */
 public class PhotoBundle implements Bundle<PhotoContent> {
     private List<PhotoContent> photoContentList = new LinkedList<>();
+
+    public PhotoBundle(){}
 
     public PhotoBundle(PhotoContent... photos) {
         for (PhotoContent photo : photos) {

@@ -29,14 +29,14 @@ public class OAuthController {
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/test")
-    public @ResponseBody UserAuthenticationInfo test(){
-        return new UserAuthenticationInfo("lenkyun", "1234");
+    public @ResponseBody
+    ResponseWrapper<SessionAuthenticationInfo> test(){
+        return sessionLogin(new UserAuthenticationInfo("lenkyun", "1234"));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/login")
     public @ResponseBody
     ResponseWrapper<SessionAuthenticationInfo> sessionLogin(@RequestBody UserAuthenticationInfo user) {
-        ObjectMapper objectMapper = new ObjectMapper();
         ResponseWrapper<SessionAuthenticationInfo> wrapper = new ResponseWrapper<>();
         SessionAuthenticationInfo session = userAuthentication.login(user);
 
