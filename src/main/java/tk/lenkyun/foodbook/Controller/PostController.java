@@ -47,7 +47,7 @@ public class PostController {
         }
 
         try {
-            postFeed.getRateMe(token, foodPost.getResult());
+            responseWrapper.setResult(postFeed.getRateMe(token, foodPost.getResult()));
         }catch (NoPermissionException e){
             responseWrapper.setError(403);
             responseWrapper.setDetail("No permission.");
