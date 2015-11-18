@@ -66,6 +66,6 @@ public class Token {
 
     @JsonIgnore
     public boolean isTimedOut(){
-        return System.currentTimeMillis() > limit;
+        return System.currentTimeMillis() / 1000 > limit;
     }
 }
