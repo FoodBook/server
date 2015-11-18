@@ -12,14 +12,13 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.User.Profile;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.RowsetParser;
+import tk.lenkyun.foodbook.foodbook.Parser.rowset.UserMapper;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.UserParser;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.Exception.DuplicateUserException;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lenkyun on 5/11/2558.
@@ -218,5 +217,24 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         );
 
         return false;
+    }
+
+    @Override
+    public Collection<User> getAllFollowingUser(User user) {
+        String querer = "select %s.* from %s, %s where %s.%s = %s.%s and %s.%s = ?";
+        querer = String.format(querer,
+                env.getProperty("database.table.user"),
+                env.getProperty("database.table.follow"),
+                env.getProperty("database.table.user"),
+                env.getProperty("database.table.user"), "uid",
+                env.getProperty("database.table.follow"), "follow_uid",
+                env.getProperty("database.table.follow"), "uid"
+            );
+
+        Object[] values = new Object[]{
+                user.getId()
+        };
+
+        return query(querer, new UserMapper(), user.getId());
     }
 }

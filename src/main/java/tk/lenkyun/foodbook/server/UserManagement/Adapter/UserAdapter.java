@@ -5,6 +5,8 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
 
+import java.util.Collection;
+
 /**
  * Created by lenkyun on 5/11/2558.
  */
@@ -22,4 +24,5 @@ public interface UserAdapter {
     Boolean getIsFollowing(User user, User following);
     Boolean setFollowing(User user, User following);
     Boolean unsetFollowing(User user, User following);
+    Collection<User> getAllFollowingUser(User user);
 }

@@ -124,7 +124,7 @@ public class UserController {
         return wrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/follow")
+    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}/follow")
     public @ResponseBody
     ResponseWrapper<Boolean> getIsFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
@@ -159,7 +159,7 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/follow")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/follow")
     public @ResponseBody
     ResponseWrapper<Boolean> setFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
@@ -194,7 +194,7 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/unfollow")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/unfollow")
     public @ResponseBody
     ResponseWrapper<Boolean> setUnFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
@@ -222,6 +222,28 @@ public class UserController {
         try {
             responseWrapper.setResult(
                     userManager.unsetFollowingUser(token, following.getResult()));
+        }catch (NoPermissionException e){
+            responseWrapper.setError(403);
+            responseWrapper.setDetail("No permission.");
+        }
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/follow")
+    public @ResponseBody
+    ResponseWrapper<Collection<User>> getAllFollowUser(@RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Collection<User>> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        try {
+            responseWrapper.setResult(
+                    userManager.getAllFollowingUser(token));
         }catch (NoPermissionException e){
             responseWrapper.setError(403);
             responseWrapper.setDetail("No permission.");

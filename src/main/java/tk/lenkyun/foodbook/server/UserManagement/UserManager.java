@@ -18,6 +18,8 @@ import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.Exception.DuplicateUserException;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
 
+import java.util.Collection;
+
 /**
  * Created by lenkyun on 5/11/2558.
  */
@@ -73,7 +75,7 @@ public class UserManager {
         );
     }
 
-    public Boolean setFollowingUser(Token token, User user) {
+    public Boolean setFollowingUser(Token token, User user) throws NoPermissionException{
         if(token.isTimedOut())
             throw new NoPermissionException();
 
@@ -83,7 +85,7 @@ public class UserManager {
         );
     }
 
-    public Boolean unsetFollowingUser(Token token, User user) {
+    public Boolean unsetFollowingUser(Token token, User user) throws NoPermissionException{
         if(token.isTimedOut())
             throw new NoPermissionException();
 
@@ -91,5 +93,21 @@ public class UserManager {
                 userAdapter.getUserById(token.getUid()),
                 user
         );
+    }
+
+    public Collection<User> getAllFollowingUser(Token token) throws NoPermissionException{
+        if(token.isTimedOut())
+            throw new NoPermissionException();
+
+        Collection<User> users = userAdapter.getAllFollowingUser(
+                userAdapter.getUserById(token.getUid())
+        );
+
+        for(User user : users){
+            user.setUserAuthenticationInfo(null);
+            user.setSocialId(null);
+        }
+
+        return users;
     }
 }

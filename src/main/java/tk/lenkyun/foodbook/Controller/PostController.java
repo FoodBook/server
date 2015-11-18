@@ -173,7 +173,7 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/comment")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/rate")
     public @ResponseBody
     ResponseWrapper<Integer> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
                                                     @RequestBody Integer inputRate){
