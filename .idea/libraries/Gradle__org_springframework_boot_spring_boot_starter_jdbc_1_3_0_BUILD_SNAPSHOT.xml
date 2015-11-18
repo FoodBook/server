@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework.boot:spring-boot-starter-jdbc:1.3.0.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.3.0.BUILD-SNAPSHOT/bcf785243faaedd5246549d3d1724d7d0d9891c7/spring-boot-starter-jdbc-1.3.0.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.3.0.BUILD-SNAPSHOT/4a82394bfa094f7ae1d8893f8da579c103cc801c/spring-boot-starter-jdbc-1.3.0.BUILD-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.3.0.BUILD-SNAPSHOT/fdd06665d10a5a2188717fe0918e0aa07354b5c2/spring-boot-starter-jdbc-1.3.0.BUILD-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.3.0.BUILD-SNAPSHOT/28a0d59dea66cd99cc47a24d93548f348f30f0b8/spring-boot-starter-jdbc-1.3.0.BUILD-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

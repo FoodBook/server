@@ -35,7 +35,7 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
-    compile('org.springframework.boot:spring-boot-starter-social-facebook')
+    compile('com.restfb:restfb:1.16.0')
 
     compile 'com.mchange:c3p0:0.9.5'
     compile 'commons-codec:commons-codec:1.9'

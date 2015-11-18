@@ -1,9 +1,11 @@
 package tk.lenkyun.foodbook.server.UserManagement;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Version;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.stereotype.Service;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.FacebookAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.SessionAuthenticationInfo;
@@ -24,6 +26,7 @@ import java.util.Collection;
  * Created by lenkyun on 5/11/2558.
  */
 @Service
+@PropertySource("classpath:database.properties")
 public class UserManager {
     @Autowired
     private UserAdapter userAdapter;
@@ -31,6 +34,8 @@ public class UserManager {
     private SessionAdapter sessionAdapter;
     @Autowired
     private PhotoAdapter photoAdapter;
+    @Autowired
+    Environment env;
 
     public SessionAuthenticationInfo login(UserAuthenticationInfo authenticationInfo){
         User user = userAdapter.getUser(authenticationInfo);
@@ -55,8 +60,8 @@ public class UserManager {
 
     public SessionAuthenticationInfo login(FacebookAuthenticationInfo user) throws NoPermissionException{
         try {
-            Facebook facebook = new FacebookTemplate(user.getInfo());
-            org.springframework.social.facebook.api.User fbUser = facebook.userOperations().getUserProfile();
+            FacebookClient facebookClient = new DefaultFacebookClient(user.getInfo(), Version.VERSION_2_4);
+            com.restfb.types.User fbUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
 
             User userObj = userAdapter.getUserByFacebookId(fbUser.getId());
             return sessionAdapter.createSession(userObj, Config.SESSION_SHORT);
