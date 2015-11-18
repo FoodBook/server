@@ -75,7 +75,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     @Override
     public FoodPost updatePost(FoodPost foodPost) {
         String querer = String.format("update %s SET %s = ?, %s = ? WHERE %s = ?",
-                env.getProperty("database.table.comment"),
+                env.getProperty("database.table.post"),
                 FoodPostMapper.CAPTION,
                 FoodPostMapper.TAG,
                 FoodPostMapper.ID
