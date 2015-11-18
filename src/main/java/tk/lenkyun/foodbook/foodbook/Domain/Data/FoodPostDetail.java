@@ -34,8 +34,17 @@ public class FoodPostDetail {
         return photoItems.size();
     }
 
+    @JsonIgnore
     public PhotoItem getPhoto(int index) {
         return photoItems.get(index);
+    }
+
+    public List<PhotoItem> getPhotoItems(){
+        return photoItems;
+    }
+
+    public void setPhotoItems(List<PhotoItem> photoItems){
+        this.photoItems = photoItems;
     }
 
     public int countTag(){
