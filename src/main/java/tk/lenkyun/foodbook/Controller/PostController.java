@@ -113,7 +113,8 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/post/{id}")
     public @ResponseBody
-    ResponseWrapper<FoodPost> updatePost(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<FoodPost> updatePost(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString,
+                                            @RequestBody FoodPost foodPostInput){
         ResponseWrapper<FoodPost> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -129,6 +130,9 @@ public class PostController {
             responseWrapper.setDetail(foodPost.getDetail());
             return responseWrapper;
         }
+
+        foodPost.getResult().getPostDetail().setCaption(foodPostInput.getPostDetail().getCaption());
+        foodPost.getResult().getPostDetail().setTags(foodPostInput.getPostDetail().getTags());
 
         try {
             responseWrapper.setResult(postFeed.updatePost(token, foodPost.getResult()));
