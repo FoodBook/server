@@ -34,7 +34,7 @@ public class CommentMapper implements RowMapper<Comment> {
 
     public static Object[] generateInsertQueryValue(Comment comment){
         Object[] values = new Object[]{
-                comment.getAssoc(),          // Assoc
+                comment.getAssoc().getId(),          // Assoc
                 comment.getUser().getId(),   // Owner
                 comment.getMessage(),        // Message
                 comment.getCreatedDate()     // Created Date
