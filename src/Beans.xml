@@ -3,6 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <!-- Referral : http://stackoverflow.com/questions/4823358/spring-configure-responsebody-json-format -->
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="objectMapper">
+            <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                <property name="serializationInclusion">
+                    <value type="com.fasterxml.jackson.annotation.JsonInclude">NON_NULL</value>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
     <!-- Referral : http://stackoverflow.com/questions/14501262/best-way-of-database-pooling-in-spring-for-production-system -->
     <bean id="mainDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driverClassName}" />
