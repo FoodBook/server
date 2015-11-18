@@ -111,7 +111,7 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/update")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}")
     public @ResponseBody
     ResponseWrapper<FoodPost> updatePost(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<FoodPost> responseWrapper = new ResponseWrapper<>();
