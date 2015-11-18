@@ -90,7 +90,8 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
 
         Object[] value = new Object[]{
                 foodPost.getPostDetail().getCaption(),
-                String.join(",", strs)
+                String.join(",", strs),
+                foodPost.getId()
         };
 
         update(querer, value);
