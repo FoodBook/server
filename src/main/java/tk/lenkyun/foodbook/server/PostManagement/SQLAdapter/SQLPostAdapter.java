@@ -57,9 +57,9 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
                             "score",                                 // AVG(%s)
                             env.getProperty("database.table.post"),  // From %s, %s
                             env.getProperty("database.table.rate"),
-                            env.getProperty("datanase.table.post"), FoodPostMapper.ID, // Where %s.%s = ?
+                            env.getProperty("database.table.post"), FoodPostMapper.ID, // Where %s.%s = ?
                             env.getProperty("database.table.rate"), "pid",             // And %s.%s
-                            env.getProperty("datanase.table.post"), FoodPostMapper.ID  // = %s.%s
+                            env.getProperty("database.table.post"), FoodPostMapper.ID  // = %s.%s
                     ),
                     new Object[]{id}, new FoodPostMapper());
         }catch(EmptyResultDataAccessException ignored){
