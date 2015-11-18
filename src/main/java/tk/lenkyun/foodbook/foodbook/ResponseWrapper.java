@@ -1,8 +1,11 @@
 package tk.lenkyun.foodbook.foodbook;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * Created by lenkyun on 6/11/2558.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseWrapper<E> {
     private E result;
     private int error;

@@ -218,14 +218,11 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     @Override
     public Collection<Comment> getComments(FoodPost post) {
         try {
-            return query(String.format("select *, AVG(%s) from %s, %s where %s = ? and %s = ?",
-                            "rate",
+            return query(String.format("select * from %s where %s = ?",
                             env.getProperty("database.table.comment"),
-                            env.getProperty("database.table.rate"),
-                            CommentMapper.ASSOC,
-                            "pid"
+                            CommentMapper.ASSOC
                             ),
-                    new Object[]{post.getId(), post.getId()}, new CommentMapper());
+                    new Object[]{post.getId()}, new CommentMapper());
         }catch(EmptyResultDataAccessException ignored){
             return null;
         }
