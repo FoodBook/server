@@ -167,7 +167,7 @@ public class PostController {
         inputComment.setUser(userAdapter.getUserById(token.getUid()));
 
         Comment comment = postFeed.insertComment(token, inputComment);
-        if(comment != null){
+        if(comment == null){
             responseWrapper.setError(1);
             responseWrapper.setDetail("Token expired.");
         }else {
