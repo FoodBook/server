@@ -29,8 +29,8 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate/me")
     public @ResponseBody
-    ResponseWrapper<Integer> getRateMe(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
-        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+    ResponseWrapper<Float> getRateMe(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
         if(token == null){
@@ -57,8 +57,8 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate")
     public @ResponseBody
-    ResponseWrapper<Integer> getRate(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
-        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+    ResponseWrapper<Float> getRate(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
         if(token == null){
@@ -179,9 +179,9 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/rate")
     public @ResponseBody
-    ResponseWrapper<Integer> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
+    ResponseWrapper<Float> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
                                                     @RequestBody Integer inputRate){
-        ResponseWrapper<Integer> responseWrapper = new ResponseWrapper<>();
+        ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
         if(token == null){

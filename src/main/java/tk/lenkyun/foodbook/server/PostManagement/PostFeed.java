@@ -117,21 +117,21 @@ public class PostFeed {
         return postAdapter.insertPost(foodPost);
     }
 
-    public Integer getRate(Token token, FoodPost foodPost){
+    public Float getRate(Token token, FoodPost foodPost){
         if(token.isTimedOut()) {
             throw new NoPermissionException();
         }
         return postAdapter.getRate(foodPost);
     }
 
-    public Integer getRateMe(Token token, FoodPost foodPost) {
+    public Float getRateMe(Token token, FoodPost foodPost) {
         if(token.isTimedOut()) {
             throw new NoPermissionException();
         }
-        return postAdapter.getRateMe(foodPost, userAdapter.getUserById(token.getUid()));
+        return postAdapter.getRate(foodPost, userAdapter.getUserById(token.getUid()));
     }
 
-    public Integer setRate(Token token, FoodPost foodPost, int rate) {
+    public Float setRate(Token token, FoodPost foodPost, int rate) {
         if(token.isTimedOut()) {
             throw new NoPermissionException();
         }

@@ -165,37 +165,37 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     }
 
     @Override
-    public Integer getRate(FoodPost foodPost) {
+    public Float getRate(FoodPost foodPost) {
         try {
-            Integer i = queryForObject(String.format("select AVG(%s) from %s where %s = ?",
+            Float i = queryForObject(String.format("select AVG(%s) from %s where %s = ?",
                             "score",
                             env.getProperty("database.table.rate"),
                             "pid"),
-                    new Object[]{foodPost.getId()}, Integer.class);
+                    new Object[]{foodPost.getId()}, Float.class);
 
             return i == null ? 0 : i;
         }catch(EmptyResultDataAccessException ignored){
-            return 0;
+            return 0F;
         }
     }
 
     @Override
-    public Integer getRateMe(FoodPost foodPost, User user) {
+    public Float getRate(FoodPost foodPost, User user) {
         try {
-            Integer i = queryForObject(String.format("select %s from %s where %s = ? and %s = ?",
+            Float i = queryForObject(String.format("select %s from %s where %s = ? and %s = ?",
                             "score",
                             env.getProperty("database.table.rate"),
                             "pid", "uid"),
-                    new Object[]{foodPost.getId(), user.getId()}, Integer.class);
+                    new Object[]{foodPost.getId(), user.getId()}, Float.class);
 
             return i == null ? 0 : i;
         }catch(EmptyResultDataAccessException ignored){
-            return 0;
+            return 0F;
         }
     }
 
     @Override
-    public Integer setRate(FoodPost foodPost, User user, int rate) {
+    public Float setRate(FoodPost foodPost, User user, int rate) {
         String querer = "insert into %s (%s, %s, %s) values (?, ?, ?) on duplicate key update " +
                 "%s = ?";
         querer = String.format(querer,
