@@ -4,10 +4,12 @@ import org.springframework.jdbc.core.RowMapper;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPostDetail;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Location;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Tag;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 
 import java.lang.reflect.Array;
+import java.net.URI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -68,6 +70,9 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
         );
 
         FoodPostDetail detail = new FoodPostDetail(rs.getString(CAPTION), location);
+        detail.setCreatedDate(rs.getTimestamp(CREATED_DATE));
+        detail.addPhoto(new PhotoItem(URI.create(rs.getString(PHOTOITEM)), 0, 0));
+
         FoodPost foodPost = new FoodPost(
                 String.valueOf(rs.getInt(ID)),
                 detail,
@@ -77,7 +82,6 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
                 )
             );
 
-        foodPost.getPostDetail().setCreatedDate(rs.getTimestamp(CREATED_DATE));
 
         FoodPostDetail foodPostDetail = foodPost.getPostDetail();
         String tag = rs.getString(TAG);
