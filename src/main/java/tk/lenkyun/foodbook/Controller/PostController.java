@@ -180,7 +180,7 @@ public class PostController {
     @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/rate")
     public @ResponseBody
     ResponseWrapper<Float> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
-                                                    @RequestBody Integer inputRate){
+                                                    @RequestBody Float inputRate){
         ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
