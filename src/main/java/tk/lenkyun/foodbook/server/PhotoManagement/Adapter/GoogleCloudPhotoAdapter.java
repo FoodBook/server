@@ -85,7 +85,7 @@ public class GoogleCloudPhotoAdapter implements PhotoAdapter {
 
             StorageObject result = insert.execute();
             try {
-                return new URI(result.getSelfLink());
+                return new URI(String.format("http://storage.googleapis.com/%s/%s", result.getBucket(), result.getName()));
             } catch (URISyntaxException e) {
                 return null;
             }
