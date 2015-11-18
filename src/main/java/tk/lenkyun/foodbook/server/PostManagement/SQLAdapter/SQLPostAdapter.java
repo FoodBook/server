@@ -52,9 +52,15 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     @Override
     public FoodPost getPost(String id) {
         try {
-            return queryForObject(String.format("select * from %s where %s = ?",
-                            env.getProperty("database.table.post"),
-                            FoodPostMapper.ID),
+            return queryForObject(String.format("select %s.*, AVG(%s) as rate from %s, %s where %s.%s = ? and %s.%s = %s.%s",
+                            env.getProperty("database.table.post"),  // Select %s.*,
+                            "score",                                 // AVG(%s)
+                            env.getProperty("database.table.post"),  // From %s, %s
+                            env.getProperty("database.table.rate"),
+                            env.getProperty("datanase.table.post"), FoodPostMapper.ID, // Where %s.%s = ?
+                            env.getProperty("database.table.rate"), "pid",             // And %s.%s
+                            env.getProperty("datanase.table.post"), FoodPostMapper.ID  // = %s.%s
+                    ),
                     new Object[]{id}, new FoodPostMapper());
         }catch(EmptyResultDataAccessException ignored){
             return null;
