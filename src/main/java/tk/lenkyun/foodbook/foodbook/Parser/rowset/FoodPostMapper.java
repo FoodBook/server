@@ -89,6 +89,10 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
             foodPostDetail.pushTag(new Tag());
         }
 
+        try{
+            foodPost.setAverageRate(rs.getFloat("rate"));
+        }catch (Exception ignored){}
+
         return foodPost;
     }
 }
