@@ -83,7 +83,9 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
 
         ArrayList<String> strs = new ArrayList<>();
         for(Tag tag : foodPost.getPostDetail().getTags()){
-            strs.add(tag.getTagName().trim());
+            if(tag != null && tag.getTagName() != null) {
+                strs.add(tag.getTagName().trim());
+            }
         }
 
         Object[] value = new Object[]{

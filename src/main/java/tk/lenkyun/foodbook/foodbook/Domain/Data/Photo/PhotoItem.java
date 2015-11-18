@@ -14,6 +14,7 @@ public class PhotoItem implements FoodbookType, Referal {
     protected URI referalImageURI;
     protected int width, height;
 
+    public PhotoItem(){}
     public PhotoItem(URI referalImageURI, int width, int height) {
         this.referalImageURI = referalImageURI;
         this.width = width;
