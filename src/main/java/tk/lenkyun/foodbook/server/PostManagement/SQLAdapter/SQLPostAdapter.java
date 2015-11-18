@@ -195,7 +195,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     }
 
     @Override
-    public Float setRate(FoodPost foodPost, User user, int rate) {
+    public Float setRate(FoodPost foodPost, User user, float rate) {
         String querer = "insert into %s (%s, %s, %s) values (?, ?, ?) on duplicate key update " +
                 "%s = ?";
         querer = String.format(querer,

@@ -26,5 +26,5 @@ public interface PostAdapter {
 
     Float getRate(FoodPost foodPost, User userById);
 
-    Float setRate(FoodPost foodPost, User user, int rate);
+    Float setRate(FoodPost foodPost, User user, float rate);
 }
