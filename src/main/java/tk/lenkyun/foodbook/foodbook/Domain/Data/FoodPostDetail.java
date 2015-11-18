@@ -17,6 +17,7 @@ public class FoodPostDetail {
     @JsonProperty("tag")
     private List<Tag> tagList = new LinkedList<>();
     private Location location;
+    @JsonProperty("photos")
     private List<PhotoItem> photoItems = new LinkedList<PhotoItem>();
     private String caption;
 
