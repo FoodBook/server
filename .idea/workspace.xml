@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b40ddce7-e37a-4e95-b436-d5d557aa3616" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/database.properties" afterPath="$PROJECT_DIR$/src/main/resources/database.properties" />
     </list>
     <ignored path="controller.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,8 +121,8 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5538847">
-              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.42606518">
+              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -1568,7 +1567,7 @@
       <workItem from="1447100374970" duration="163000" />
       <workItem from="1447647851075" duration="5952000" />
       <workItem from="1447719330805" duration="25303000" />
-      <workItem from="1447753251579" duration="32119000" />
+      <workItem from="1447753251579" duration="32202000" />
     </task>
     <task id="LOCAL-00001" summary="test2">
       <created>1447778845331</created>
@@ -1592,7 +1591,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92678000" />
+    <option name="totallyTimeSpent" value="92761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -2119,8 +2118,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5538847">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.42606518">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding />
         </state>
       </provider>
