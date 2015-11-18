@@ -131,7 +131,7 @@ public class PostFeed {
         return postAdapter.getRate(foodPost, userAdapter.getUserById(token.getUid()));
     }
 
-    public Float setRate(Token token, FoodPost foodPost, int rate) {
+    public Float setRate(Token token, FoodPost foodPost, float rate) {
         if(token.isTimedOut()) {
             throw new NoPermissionException();
         }
