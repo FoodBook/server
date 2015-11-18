@@ -5,6 +5,10 @@ public class FacebookAuthenticationInfo extends AuthenticationInfo {
     private String facebookToken;
     private String facebookId;
 
+    public FacebookAuthenticationInfo(){
+        super(AUTH_TYPE);
+    }
+
     public FacebookAuthenticationInfo(String id, String facebookToken) {
         super(AUTH_TYPE);
         this.facebookToken = facebookToken;
