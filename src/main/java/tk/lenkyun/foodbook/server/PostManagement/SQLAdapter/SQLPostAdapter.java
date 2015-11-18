@@ -17,6 +17,7 @@ import tk.lenkyun.foodbook.server.PostManagement.Adapter.PostAdapter;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * Created by lenkyun on 17/11/2558.
@@ -148,6 +149,8 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
 
     @Override
     public Comment createComment(Comment comment) {
+        comment.setCreatedDate(new Date());
+
         String querer = CommentMapper.generateInsertQuery(env.getProperty("database.table.comment"));
         Object[] values = CommentMapper.generateInsertQueryValue(comment);
         Integer id = update(
