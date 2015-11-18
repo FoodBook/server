@@ -190,6 +190,12 @@ public class PostController {
             return responseWrapper;
         }
 
+        if(inputRate > 5 || inputRate < 1){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Invalid range, [1-5]");
+            return responseWrapper;
+        }
+
         ResponseWrapper<FoodPost> foodPost = getFoodPost(id, tokenString);
         if(foodPost.getError() != 0){
             responseWrapper.setError(foodPost.getError());

@@ -190,7 +190,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
 
             return i == null ? 0 : i;
         }catch(EmptyResultDataAccessException ignored){
-            return null;
+            return 0;
         }
     }
 
