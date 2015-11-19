@@ -52,7 +52,7 @@ public class UserController {
             return responseWrapper;
         }
 
-        ResponseWrapper<User> user = requestUserInfo(id, tokenString);
+        ResponseWrapper<User> user = requestUserInfo(token.getUid(), tokenString);
         if(user.getError() != 0){
             responseWrapper.setError(user.getError());
             responseWrapper.setDetail(user.getDetail());
