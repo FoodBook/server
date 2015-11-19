@@ -95,6 +95,9 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
 
         try{
             foodPost.setOwner(new UserMapper().mapRow(rs, rowNum));
+            foodPost.getOwner().setUserAuthenticationInfo(null);
+            foodPost.getOwner().setSocialId(null);
+            foodPost.getOwner().setFollowing(null);
         }catch (Exception ignored){
 
         }

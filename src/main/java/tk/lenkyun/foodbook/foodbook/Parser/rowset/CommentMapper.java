@@ -55,6 +55,9 @@ public class CommentMapper implements RowMapper<Comment> {
 
         try{
             comment.setUser(new UserMapper().mapRow(rs, rowNum));
+            comment.getUser().setUserAuthenticationInfo(null);
+            comment.getUser().setSocialId(null);
+            comment.getUser().setFollowing(null);
         }catch (Exception ignored){
             comment.setUser(new User(String.valueOf(rs.getInt(OWNER)), null, null));
         }
