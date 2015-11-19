@@ -34,6 +34,12 @@ public class CommentController {
             return responseWrapper;
         }
 
+        if(inputComment.getMessage() == null){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Message can't be null.");
+            return responseWrapper;
+        }
+
         ResponseWrapper<Comment> comment = getComment(id, tokenString);
         if(comment.getError() != 0){
             responseWrapper.setError(comment.getError());
