@@ -120,6 +120,9 @@ public class UserManager {
         if(token.isTimedOut())
             throw new NoPermissionException();
 
-        return userAdapter.updateUserAuthen(userAdapter.getUserById(token.getUid()), authen);
+        User user = userAdapter.updateUserAuthen(userAdapter.getUserById(token.getUid()), authen);
+        user.setUserAuthenticationInfo(null);
+
+        return user;
     }
 }
