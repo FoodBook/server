@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/me/password")
     public @ResponseBody
-    ResponseWrapper<User> insertFoodPostComments(@RequestParam(value="token") String tokenString,
+    ResponseWrapper<User> userChangePassword(@RequestParam(value="token") String tokenString,
                                                  @RequestBody UserAuthenticationInfo inputAuthen){
         ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
