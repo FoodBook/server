@@ -154,4 +154,12 @@ public class PostFeed {
 
         return postAdapter.getLocationNearLocation(latLng, 10);
     }
+
+    public Collection<FoodPost> getPostByKeyword(Token token, String keyword) {
+        if(token.isTimedOut()) {
+            throw new NoPermissionException();
+        }
+
+        return postAdapter.getPostByKeyword(keyword);
+    }
 }

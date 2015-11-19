@@ -79,6 +79,18 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     }
 
     @Override
+    public Collection<FoodPost> getPostByKeyword(String keyword) {
+        try {
+            return query(String.format("select * from %s where %s LIKE ?",
+                    env.getProperty("database.table.post"),
+                    FoodPostMapper.CAPTION
+            ), new FoodPostMapper(), "%" + keyword + "%");
+        } catch (EmptyResultDataAccessException ignored) {
+            return null;
+        }
+    }
+
+    @Override
     public Collection<FoodPost> getPost(User user) {
         try {
             return query(String.format("select * from %s where %s = ?",

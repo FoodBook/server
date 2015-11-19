@@ -22,6 +22,22 @@ public class LocationController {
     @Autowired
     TokenProvider tokenProvider;
 
+    @RequestMapping(method = RequestMethod.GET, value = "/feed/{keyword}")
+    public @ResponseBody
+    ResponseWrapper<Collection<FoodPost>> getPostByKeyword(@PathVariable(value = "keyword") String keyword, @RequestParam(value = "token") String tokenString){
+        ResponseWrapper<Collection<FoodPost>> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        responseWrapper.setResult(postFeed.getPostByKeyword(token, keyword));
+        return responseWrapper;
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/feed/{lat}/{lon}")
     public @ResponseBody
     ResponseWrapper<Collection<FoodPost>> getPostNear(@PathVariable(value = "lat") float lat, @PathVariable(value = "lon") float lon, @RequestParam(value = "token") String tokenString){
