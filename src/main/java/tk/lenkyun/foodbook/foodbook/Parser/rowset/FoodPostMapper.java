@@ -93,6 +93,12 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
             foodPost.setAverageRate(rs.getFloat("rate"));
         }catch (Exception ignored){}
 
+        try{
+            foodPost.setOwner(new UserMapper().mapRow(rs, rowNum));
+        }catch (Exception ignored){
+
+        }
+
         return foodPost;
     }
 }

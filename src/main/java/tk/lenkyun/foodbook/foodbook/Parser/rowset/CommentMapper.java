@@ -52,7 +52,12 @@ public class CommentMapper implements RowMapper<Comment> {
         comment.setMessage(rs.getString(MESSAGE));
         comment.setAssoc(new FoodPost(
                 String.valueOf(rs.getInt(ASSOC)), null, null));
-        comment.setUser(new User(String.valueOf(rs.getInt(OWNER)), null, null));
+
+        try{
+            comment.setUser(new UserMapper().mapRow(rs, rowNum));
+        }catch (Exception ignored){
+            comment.setUser(new User(String.valueOf(rs.getInt(OWNER)), null, null));
+        }
 
         return comment;
     }
