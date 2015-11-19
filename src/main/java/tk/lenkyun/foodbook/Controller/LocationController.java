@@ -22,7 +22,7 @@ public class LocationController {
     @Autowired
     TokenProvider tokenProvider;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/feed/{keyword}")
+    @RequestMapping(method = RequestMethod.GET, value = "/search/{keyword}")
     public @ResponseBody
     ResponseWrapper<Collection<FoodPost>> getPostByKeyword(@PathVariable(value = "keyword") String keyword, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Collection<FoodPost>> responseWrapper = new ResponseWrapper<>();
