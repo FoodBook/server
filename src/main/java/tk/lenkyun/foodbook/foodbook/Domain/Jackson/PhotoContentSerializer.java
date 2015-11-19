@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import org.apache.tomcat.util.codec.binary.Base64;
+import tk.lenkyun.foodbook.foodbook.Utils.Base64Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,6 +17,6 @@ public class PhotoContentSerializer extends JsonSerializer<byte[]> {
     @Override
     public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        gen.writeString(Base64.encodeBase64String(value));
+        gen.writeString(Base64Utils.encode(value));
     }
 }
