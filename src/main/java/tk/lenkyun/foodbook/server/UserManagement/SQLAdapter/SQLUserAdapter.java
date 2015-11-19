@@ -121,6 +121,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
 
         StringBuilder query = new StringBuilder();
         Map<String, Object> list = new UserParser().parse(user);
+        list.remove(UserParser.UID);
 
         query.append("UPDATE ")
                 .append(env.getProperty("database.table.user"))
