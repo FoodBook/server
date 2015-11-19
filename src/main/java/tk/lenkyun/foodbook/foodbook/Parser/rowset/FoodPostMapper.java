@@ -86,7 +86,7 @@ public class FoodPostMapper implements RowMapper<FoodPost> {
         FoodPostDetail foodPostDetail = foodPost.getPostDetail();
         String tag = rs.getString(TAG);
         for(String str : tag.split(",")){
-            foodPostDetail.pushTag(new Tag());
+            foodPostDetail.pushTag(new Tag(str, null));
         }
 
         try{
