@@ -37,7 +37,7 @@ public abstract class RowsetParser<E extends FoodbookType> {
         ArrayList<Object> objects = new ArrayList<Object>();
         for(Map.Entry<String, Object> map : list.entrySet()){
             if(map.getKey() != null)
-                objects.add(map.getKey());
+                objects.add(map.getValue());
         }
         return objects.toArray();
     }

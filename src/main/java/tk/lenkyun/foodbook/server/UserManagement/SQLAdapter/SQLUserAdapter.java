@@ -125,6 +125,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         list.remove(UserParser.USERNAME);
         list.remove(UserParser.PASSWORD);
         list.remove(UserParser.SOCIALID);
+        list.remove(UserParser.PROFILE_IMAGE);
 
         query.append("UPDATE ")
                 .append(env.getProperty("database.table.user"))
