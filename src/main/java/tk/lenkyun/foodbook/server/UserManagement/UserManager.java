@@ -155,6 +155,9 @@ public class UserManager {
             profile.setLastname(profileI.getLastname() == null ? profileI.getLastname() : profile.getLastname());
         }
 
-        return userAdapter.updateUser(user);
+        User userO = userAdapter.updateUser(user);
+        userO.setUserAuthenticationInfo(null);
+
+        return userO;
     }
 }
