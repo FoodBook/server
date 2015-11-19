@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Comment;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Location;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Operation.FoodPostBuilder;
@@ -136,5 +137,13 @@ public class PostFeed {
             throw new NoPermissionException();
         }
         return postAdapter.setRate(foodPost, userAdapter.getUserById(token.getUid()), rate);
+    }
+
+    public Collection<Location> getLocation(Token token, Location.LatLng latLng) {
+        if(token.isTimedOut()) {
+            throw new NoPermissionException();
+        }
+
+        return postAdapter.getLocationNearLocation(latLng, 10);
     }
 }

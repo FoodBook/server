@@ -2,6 +2,7 @@ package tk.lenkyun.foodbook.server.PostManagement.Adapter;
 
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Comment;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Location;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 
 import java.util.Collection;
@@ -27,4 +28,7 @@ public interface PostAdapter {
     Float getRate(FoodPost foodPost, User userById);
 
     Float setRate(FoodPost foodPost, User user, float rate);
+
+    Collection<FoodPost> getPostNearLocation(Location.LatLng latLng, double range);
+    Collection<Location> getLocationNearLocation(Location.LatLng latLng, double range);
 }

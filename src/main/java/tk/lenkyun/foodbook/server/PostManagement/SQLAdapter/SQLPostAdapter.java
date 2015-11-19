@@ -8,16 +8,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Comment;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Location;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Tag;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.CommentMapper;
 import tk.lenkyun.foodbook.foodbook.Parser.rowset.FoodPostMapper;
+import tk.lenkyun.foodbook.foodbook.Parser.rowset.LocationMapper;
 import tk.lenkyun.foodbook.server.PostManagement.Adapter.PostAdapter;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lenkyun on 17/11/2558.
@@ -42,6 +45,14 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
                 querer,
                 values
         );
+
+        if(foodPost.getPostDetail().getLocation() != null) {
+            update(
+                    "insert ignore into location (name, lat, lon) values (?, ?, ?)",
+                    foodPost.getPostDetail().getLocation().getName(),
+                    foodPost.getPostDetail().getLocation().getCoordinate().latitude,
+                    foodPost.getPostDetail().getLocation().getCoordinate().longitude);
+        }
 
         Integer i = queryForObject("select last_insert_id()", new Object[]{}, Integer.class);
         foodPost.setId(String.valueOf(i));
@@ -202,8 +213,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
 
     @Override
     public Float setRate(FoodPost foodPost, User user, float rate) {
-        String querer = "insert into %s (%s, %s, %s) values (?, ?, ?) on duplicate key update " +
-                "%s = ?";
+        String querer = "insert into %s (%s, %s, %s) values (?, ?, ?) on duplicate key update %s = ?";
         querer = String.format(querer,
                 env.getProperty("database.table.rate"),
                 "pid", "uid", "score",
@@ -232,6 +242,38 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
                             CommentMapper.ASSOC
                             ),
                     new Object[]{post.getId()}, new CommentMapper());
+        }catch(EmptyResultDataAccessException ignored){
+            return null;
+        }
+    }
+
+    @Override
+    public Collection<FoodPost> getPostNearLocation(Location.LatLng latLng, double range){
+        try {
+            return query(String.format("select *, ( 3959 * acos( cos( radians(%f) ) * cos( radians( loc_lat ) ) * cos( radians( loc_lng ) - radians(%f) ) + sin( radians(%f) ) * sin( radians( loc_lat ) ) ) ) AS distance " +
+                                    "FROM post" +
+                                    "WHERE loc_lat > %f AND loc_lat < %f AND loc_lng > %f AND loc_lng < %f" +
+                                    "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
+                            latLng.latitude, latLng.longitude, latLng.latitude,
+                            latLng.latitude - 0.2, latLng.latitude + 0.2, latLng.longitude - 0.2, latLng.longitude + 0.2,
+                            range),
+                    new Object[]{}, new FoodPostMapper());
+        }catch(EmptyResultDataAccessException ignored){
+            return null;
+        }
+    }
+
+    @Override
+    public Collection<Location> getLocationNearLocation(Location.LatLng latLng, double range) {
+        try {
+            return query(String.format("select *, ( 3959 * acos( cos( radians(%f) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%f) ) + sin( radians(%f) ) * sin( radians( lat ) ) ) ) AS distance " +
+                                    "FROM location" +
+                                    "WHERE lat > %f AND lat < %f AND lon > %f AND lon < %f" +
+                                    "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
+                            latLng.latitude, latLng.longitude, latLng.latitude,
+                            latLng.latitude - 0.2, latLng.latitude + 0.2, latLng.longitude - 0.2, latLng.longitude + 0.2,
+                            range),
+                    new Object[]{}, new LocationMapper());
         }catch(EmptyResultDataAccessException ignored){
             return null;
         }
