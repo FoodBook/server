@@ -151,8 +151,8 @@ public class UserManager {
             Profile profile = user.getProfile();
             Profile profileI = inputUser.getProfile();
 
-            profile.setFirstname(profileI.getFirstname() == null ? profileI.getFirstname() : profile.getFirstname());
-            profile.setLastname(profileI.getLastname() == null ? profileI.getLastname() : profile.getLastname());
+            profile.setFirstname(profileI.getFirstname() != null ? profileI.getFirstname() : profile.getFirstname());
+            profile.setLastname(profileI.getLastname() != null ? profileI.getLastname() : profile.getLastname());
         }
 
         User userO = userAdapter.updateUser(user);
