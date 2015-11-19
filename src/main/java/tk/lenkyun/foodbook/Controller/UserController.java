@@ -3,6 +3,7 @@ package tk.lenkyun.foodbook.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.ResponseWrapper;
@@ -248,6 +249,50 @@ public class UserController {
             responseWrapper.setError(403);
             responseWrapper.setDetail("No permission.");
         }
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/password")
+    public @ResponseBody
+    ResponseWrapper<User> insertFoodPostComments(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
+                                                    @RequestBody UserAuthenticationInfo inputAuthen){
+        ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        if(inputAuthen.getInfo() == null || inputAuthen.getInfo().length() < 7){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Password must be longer than or equals 7.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<User> user = requestUserInfo(id, tokenString);
+        if(user.getError() != 0){
+            responseWrapper.setError(user.getError());
+            responseWrapper.setDetail(user.getDetail());
+            return responseWrapper;
+        }
+
+        user.getResult().setUserAuthenticationInfo(inputAuthen);
+
+        try {
+            User userOut = userManager.updateUser(token, inputAuthen);
+            if (userOut == null) {
+                responseWrapper.setError(1);
+                responseWrapper.setDetail("Token expired.");
+            } else {
+                responseWrapper.setResult(userOut);
+            }
+        }catch (NoPermissionException e){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Token expired.");
+        }
+
         return responseWrapper;
     }
 

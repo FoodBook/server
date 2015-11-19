@@ -115,4 +115,11 @@ public class UserManager {
 
         return users;
     }
+
+    public User updateUser(Token token, UserAuthenticationInfo authen) throws NoPermissionException{
+        if(token.isTimedOut())
+            throw new NoPermissionException();
+
+        return userAdapter.updateUserAuthen(userAdapter.getUserById(token.getUid()), authen);
+    }
 }

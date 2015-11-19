@@ -4,6 +4,7 @@ import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticatio
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
+import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
 
 import java.util.Collection;
 
@@ -25,4 +26,6 @@ public interface UserAdapter {
     Boolean setFollowing(User user, User following);
     Boolean unsetFollowing(User user, User following);
     Collection<User> getAllFollowingUser(User user);
+
+    User updateUserAuthen(User user, UserAuthenticationInfo authen);
 }

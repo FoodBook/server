@@ -237,4 +237,20 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
 
         return query(querer, new UserMapper(), user.getId());
     }
+
+    @Override
+    public User updateUserAuthen(User user, UserAuthenticationInfo authen) {
+        String querer = String.format("update %s SET %s = ? WHERE %s = ?",
+                env.getProperty("database.table.user"),
+                UserMapper.PASSWORD,
+                UserMapper.UID
+        );
+        Object[] value = new Object[]{
+                authen.getInfo(),
+                user.getId()
+        };
+
+        update(querer, value);
+        return getUserById(user.getId());
+    }
 }
