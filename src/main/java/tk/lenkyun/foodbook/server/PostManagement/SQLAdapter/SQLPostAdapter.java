@@ -269,7 +269,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
             return query(String.format("select *, ( 3959 * acos( cos( radians(%f) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%f) ) + sin( radians(%f) ) * sin( radians( lat ) ) ) ) AS distance " +
                                     "FROM location " +
                                     "WHERE lat > %f AND lat < %f AND lon > %f AND lon < %f" +
-                                    "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
+                                    "HAVING distance < %f ORDER BY distance LIMIT 0 , 150",
                             latLng.latitude, latLng.longitude, latLng.latitude,
                             latLng.latitude - 0.2, latLng.latitude + 0.2, latLng.longitude - 0.2, latLng.longitude + 0.2,
                             range),
