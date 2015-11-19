@@ -139,6 +139,14 @@ public class PostFeed {
         return postAdapter.setRate(foodPost, userAdapter.getUserById(token.getUid()), rate);
     }
 
+    public Collection<FoodPost> getPostNearLocation(Token token, Location.LatLng latLng) {
+        if(token.isTimedOut()) {
+            throw new NoPermissionException();
+        }
+
+        return postAdapter.getPostNearLocation(latLng, 10);
+    }
+
     public Collection<Location> getLocation(Token token, Location.LatLng latLng) {
         if(token.isTimedOut()) {
             throw new NoPermissionException();
