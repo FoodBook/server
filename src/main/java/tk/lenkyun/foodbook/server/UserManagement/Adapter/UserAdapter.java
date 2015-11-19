@@ -19,7 +19,7 @@ public interface UserAdapter {
     User getUserByFacebookId(String fid);
     User getUser(UserAuthenticationInfo authenticationInfo);
     User updateUser(User user);
-    User createUser(RegistrationBuilder registrationBuilder, PhotoItem profile_picture, PhotoItem profile_cover);
+    User createUser(RegistrationBuilder registrationBuilder, String facebookId, PhotoItem profile_picture, PhotoItem profile_cover);
     void removeUser(String id);
 
     Boolean getIsFollowing(User user, User following);

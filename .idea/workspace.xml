@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b40ddce7-e37a-4e95-b436-d5d557aa3616" name="Default" comment="" />
+    <list default="true" id="b40ddce7-e37a-4e95-b436-d5d557aa3616" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/Profile.java" afterPath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/Profile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java" afterPath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/UserManager.java" afterPath="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/UserManager.java" />
+    </list>
     <ignored path="controller.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -47,14 +53,34 @@
       <file leaf-file-name="SQLUserAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.3103447">
+              <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1447917993087" expanded="true" signature="6472:6519" placeholder="select count..." />
-                <marker date="1447917993087" expanded="true" signature="7472:7510" placeholder="delete from ..." />
-                <marker date="1447917993087" expanded="true" signature="7992:8049" placeholder="select %s.* ..." />
+                <marker date="1447924049910" expanded="true" signature="6619:6666" placeholder="select count..." />
+                <marker date="1447924049910" expanded="true" signature="7619:7657" placeholder="delete from ..." />
+                <marker date="1447924049910" expanded="true" signature="8139:8196" placeholder="select %s.* ..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/Profile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/UserManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+              <caret line="71" column="34" selection-start-line="71" selection-start-column="34" selection-end-line="71" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,11 +97,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/UserController.java">
+      <file leaf-file-name="RegistrationBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Operation/RegistrationBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="85" column="26" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.28328612">
+              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+              <folding>
+                <element signature="e#1545#1546#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PostUploadController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/PostUploadController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -614,7 +663,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Authentication/UserAuthenticationInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Authentication/AuthenticationInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SessionManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Authentication/SessionAuthenticationInfo.java" />
@@ -648,7 +696,6 @@
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/FoodPost.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/ControllerApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/CommentController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Utils/TokenProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Utils/Base64Utils.java" />
@@ -661,10 +708,12 @@
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/LocationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/PostManagement/SQLAdapter/SQLPostAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Parser/rowset/FoodPostMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Parser/rowset/RowsetParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/UserManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/Profile.java" />
       </list>
     </option>
   </component>
@@ -1681,7 +1730,7 @@
       <workItem from="1447100374970" duration="163000" />
       <workItem from="1447647851075" duration="5952000" />
       <workItem from="1447719330805" duration="25303000" />
-      <workItem from="1447753251579" duration="79422000" />
+      <workItem from="1447753251579" duration="81074000" />
     </task>
     <task id="LOCAL-00001" summary="test2">
       <created>1447778845331</created>
@@ -1705,7 +1754,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139981000" />
+    <option name="totallyTimeSpent" value="141633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1767,14 +1816,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/database.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Authentication/SessionAuthenticationInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2776204">
@@ -1978,26 +2019,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Operation/RegistrationBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.281407">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/PhotoManagement/Adapter/PhotoAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34170854">
           <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0678391">
-          <caret line="31" column="66" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -2010,26 +2035,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/PostUploadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Jackson/PhotoContentDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Photo/PhotoContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2982456">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -2092,8 +2101,8 @@
         <state vertical-scroll-proportion="0.36408567">
           <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="false" />
+            <element signature="e#346#347#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2116,28 +2125,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/PostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7759473">
-          <caret line="267" column="5" selection-start-line="267" selection-start-column="5" selection-end-line="267" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Tag.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -2184,10 +2175,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/Photo/PhotoContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/PostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="267" column="5" selection-start-line="267" selection-start-column="5" selection-end-line="267" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/PostUploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0689654">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/UserManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <caret line="71" column="34" selection-start-line="71" selection-start-column="34" selection-end-line="71" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2196,22 +2221,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/SQLAdapter/SQLUserAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.3103447">
+          <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1447917993087" expanded="true" signature="6472:6519" placeholder="select count..." />
-            <marker date="1447917993087" expanded="true" signature="7472:7510" placeholder="delete from ..." />
-            <marker date="1447917993087" expanded="true" signature="7992:8049" placeholder="select %s.* ..." />
+            <marker date="1447924049910" expanded="true" signature="6619:6666" placeholder="select count..." />
+            <marker date="1447924049910" expanded="true" signature="7619:7657" placeholder="delete from ..." />
+            <marker date="1447924049910" expanded="true" signature="8139:8196" placeholder="select %s.* ..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/Controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/Profile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="85" column="26" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/server/UserManagement/Adapter/UserAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Data/User/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tk/lenkyun/foodbook/foodbook/Domain/Operation/RegistrationBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28328612">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+          <folding>
+            <element signature="e#1545#1546#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

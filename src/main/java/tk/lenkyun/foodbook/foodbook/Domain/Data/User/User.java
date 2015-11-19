@@ -24,7 +24,7 @@ public class User implements FoodbookType {
 
     public User(String id, String username, Profile profile){
         this.id = id;
-        this.username = username;
+        this.username = username == null ? "" : username;
         this.profile = profile;
     }
 

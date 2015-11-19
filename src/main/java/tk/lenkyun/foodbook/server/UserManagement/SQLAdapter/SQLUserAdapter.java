@@ -142,7 +142,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
     }
 
     @Override
-    public User createUser(RegistrationBuilder registrationBuilder, PhotoItem profile_picture, PhotoItem profile_cover) {
+    public User createUser(RegistrationBuilder registrationBuilder, String facebookId, PhotoItem profile_picture, PhotoItem profile_cover) {
         if(getUserByUsername(registrationBuilder.getUsername()) != null)
             throw new DuplicateUserException("");
 
@@ -150,6 +150,10 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         User user = new User(null, registrationBuilder.getUsername(),
                 new Profile(registrationBuilder.getFirstname(), registrationBuilder.getLastname(),
                     profile_picture));
+
+        user.setSocialId(facebookId == null ? "" : facebookId);
+        user.getProfile().setProfilePicture(profile_picture);
+
         Map<String, Object> list = new UserParser().parse(user);
 
         query.append("INSERT INTO ")

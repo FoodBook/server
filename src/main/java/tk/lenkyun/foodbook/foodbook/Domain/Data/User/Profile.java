@@ -3,6 +3,8 @@ package tk.lenkyun.foodbook.foodbook.Domain.Data.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodbookType;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
 
+import java.net.URI;
+
 /**
  * Created by lenkyun on 15/10/2558.
  */
@@ -15,9 +17,9 @@ public class Profile implements FoodbookType {
     }
 
     public Profile(String firstname, String lastname, PhotoItem photoItem) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.profilePicture = photoItem;
+        this.firstname = firstname == null ? "" : firstname;
+        this.lastname = lastname == null ? "" : lastname;
+        this.profilePicture = photoItem == null ? new PhotoItem(URI.create(""), 0, 0) : photoItem;
     }
 
     public String getFirstname() {

@@ -56,7 +56,20 @@ public class UserManager {
 
     public User register(RegistrationBuilder helper) throws DuplicateUserException {
         if(userAdapter.getUserByUsername(helper.getUsername()) == null){
-            return userAdapter.createUser(helper, null, null);
+
+            String fbid = null;
+            if(helper.getFacebookToken() != null) {
+                FacebookClient facebookClient = new DefaultFacebookClient(helper.getFacebookToken(), Version.VERSION_2_4);
+                com.restfb.types.User fbUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
+
+                if (fbUser == null){
+                    throw new NoPermissionException();
+                }
+                fbid = fbUser.getId();
+            }
+
+            PhotoItem profilePicture = new PhotoItem(photoAdapter.postPhoto(helper.getProfilePicture()), 0, 0);
+            return userAdapter.createUser(helper, fbid, profilePicture, null);
         }else{
             throw new DuplicateUserException(helper.getUsername());
         }
