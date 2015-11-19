@@ -135,7 +135,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         parameters.addAll(Arrays.asList(RowsetParser.getValueList(list)));
         parameters.add(Long.parseLong(user.getId()));
 
-        SqlRowSet result = queryForRowSet(query.toString(), parameters.toArray());
+        update(query.toString(), parameters.toArray());
 
         return getUserById(user.getId());
     }
@@ -156,7 +156,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
                 .append(" (" + RowsetParser.getNameList(list) + ")")
                 .append(" VALUES (" + RowsetParser.getValueBlanker(list) + ")");
 
-        SqlRowSet result = queryForRowSet(query.toString(), RowsetParser.getValueList(list));
+        update(query.toString(), RowsetParser.getValueList(list));
 
         return getUserByUsername(registrationBuilder.getUsername());
     }
@@ -170,7 +170,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
                 .append(" WHERE " + UserParser.UID + " = ?");
 
         Object[] parameters = {Long.parseLong(id)};
-        SqlRowSet result = queryForRowSet(query.toString(), parameters);
+        update(query.toString(), parameters);
     }
 
     @Override
