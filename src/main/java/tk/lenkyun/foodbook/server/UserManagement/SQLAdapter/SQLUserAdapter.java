@@ -181,7 +181,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
 
         querer = String.format(querer,
                 env.getProperty("database.table.follow"),
-                "uid", "follow_id"
+                "uid", "follow_uid"
         );
 
         Object[] values = new Object[]{
@@ -203,7 +203,7 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
 
         querer = String.format(querer,
                 env.getProperty("database.table.follow"),
-                "uid", "follow_id"
+                "uid", "follow_uid"
         );
 
         Object[] values = new Object[]{

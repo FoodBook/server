@@ -22,11 +22,6 @@ import java.util.UUID;
 public class TokenProvider {
     SecretKey secret;
 
-    @Scheduled(cron = "*/5 * * * * ?")
-    public void testTasker(){
-        System.out.println("Scheduled.");
-    }
-
     public TokenProvider(){
         try {
             KeyGenerator generator = KeyGenerator.getInstance("DES");
