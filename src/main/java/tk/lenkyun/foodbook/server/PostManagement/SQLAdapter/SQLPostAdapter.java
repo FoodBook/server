@@ -251,7 +251,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     public Collection<FoodPost> getPostNearLocation(Location.LatLng latLng, double range){
         try {
             return query(String.format("select *, ( 3959 * acos( cos( radians(%f) ) * cos( radians( loc_lat ) ) * cos( radians( loc_lng ) - radians(%f) ) + sin( radians(%f) ) * sin( radians( loc_lat ) ) ) ) AS distance " +
-                                    "FROM post" +
+                                    "FROM post " +
                                     "WHERE loc_lat > %f AND loc_lat < %f AND loc_lng > %f AND loc_lng < %f" +
                                     "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
                             latLng.latitude, latLng.longitude, latLng.latitude,
@@ -267,7 +267,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
     public Collection<Location> getLocationNearLocation(Location.LatLng latLng, double range) {
         try {
             return query(String.format("select *, ( 3959 * acos( cos( radians(%f) ) * cos( radians( lat ) ) * cos( radians( lon ) - radians(%f) ) + sin( radians(%f) ) * sin( radians( lat ) ) ) ) AS distance " +
-                                    "FROM location" +
+                                    "FROM location " +
                                     "WHERE lat > %f AND lat < %f AND lon > %f AND lon < %f" +
                                     "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
                             latLng.latitude, latLng.longitude, latLng.latitude,
