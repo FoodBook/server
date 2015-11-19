@@ -46,7 +46,9 @@ public class CommentController {
         inputComment.setUser(comment.getResult().getUser());
 
         try {
-            postFeed.updateComment(token, inputComment);
+            responseWrapper.setResult(
+                postFeed.updateComment(token, inputComment)
+            );
         }catch (NoPermissionException e){
             responseWrapper.setError(403);
             responseWrapper.setDetail("No permission.");
