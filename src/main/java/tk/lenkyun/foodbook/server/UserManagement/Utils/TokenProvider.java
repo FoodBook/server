@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 
@@ -20,6 +21,11 @@ import java.util.UUID;
 @Repository
 public class TokenProvider {
     SecretKey secret;
+
+    @Scheduled(cron = "*/5 * * * * ?")
+    public void testTasker(){
+        System.out.println("Scheduled.");
+    }
 
     public TokenProvider(){
         try {

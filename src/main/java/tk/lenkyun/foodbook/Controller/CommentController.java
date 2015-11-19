@@ -20,7 +20,7 @@ public class CommentController {
     @Autowired
     PostFeed postFeed;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/comment/{id}/update")
+    @RequestMapping(method = RequestMethod.POST, value = "/comment/{id}")
     public @ResponseBody
     ResponseWrapper<Comment> updateComment(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString,
         @RequestBody Comment inputComment)
