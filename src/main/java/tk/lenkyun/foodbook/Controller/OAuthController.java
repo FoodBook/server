@@ -71,8 +71,8 @@ public class OAuthController {
         return wrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/oauth/renew/{token}")
-    public @ResponseBody ResponseWrapper<SessionAuthenticationInfo> sessionRenew(@PathVariable(value = "token") String token){
+    @RequestMapping(method = RequestMethod.GET, value = "/oauth/renew")
+    public @ResponseBody ResponseWrapper<SessionAuthenticationInfo> sessionRenew(@RequestParam(value = "token") String token){
         ResponseWrapper<SessionAuthenticationInfo> wrapper = new ResponseWrapper<>();
 
         if(sessionManager.isTokenValid(token)){

@@ -27,9 +27,9 @@ public class PostController {
     @Autowired
     UserAdapter userAdapter;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate/me/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate/me")
     public @ResponseBody
-    ResponseWrapper<Float> getRateMe(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<Float> getRateMe(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -55,9 +55,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/rate")
     public @ResponseBody
-    ResponseWrapper<Float> getRate(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<Float> getRate(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -83,9 +83,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/delete/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/delete")
     public @ResponseBody
-    ResponseWrapper<FoodPost> deletePost(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<FoodPost> deletePost(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<FoodPost> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -111,9 +111,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/{token}")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}")
     public @ResponseBody
-    ResponseWrapper<FoodPost> updatePost(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString,
+    ResponseWrapper<FoodPost> updatePost(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString,
                                             @RequestBody FoodPost foodPostInput){
         ResponseWrapper<FoodPost> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -143,9 +143,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/comment/{token]")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/comment")
     public @ResponseBody
-    ResponseWrapper<Comment> insertFoodPostComments(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString,
+    ResponseWrapper<Comment> insertFoodPostComments(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
                                                     @RequestBody Comment inputComment){
         ResponseWrapper<Comment> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -177,9 +177,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/rate/{token}")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{id}/rate")
     public @ResponseBody
-    ResponseWrapper<Float> setPostRate(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString,
+    ResponseWrapper<Float> setPostRate(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString,
                                                     @RequestBody Float inputRate){
         ResponseWrapper<Float> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -214,9 +214,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/comment/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/comment")
     public @ResponseBody
-    ResponseWrapper<Collection<Comment>> getFoodPostComments(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<Collection<Comment>> getFoodPostComments(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString){
         ResponseWrapper<Collection<Comment>> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -244,9 +244,9 @@ public class PostController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/post/{id}")
     public @ResponseBody
-    ResponseWrapper<FoodPost> getFoodPost(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<FoodPost> getFoodPost(@PathVariable(value = "id") String id, @RequestParam(value="token") String tokenString){
         ResponseWrapper<FoodPost> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 

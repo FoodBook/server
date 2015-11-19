@@ -22,9 +22,9 @@ public class LocationController {
     @Autowired
     TokenProvider tokenProvider;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search/{keyword}/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/search/{keyword}")
     public @ResponseBody
-    ResponseWrapper<Collection<FoodPost>> getPostByKeyword(@PathVariable(value = "keyword") String keyword, @PathVariable(value = "token")  String tokenString){
+    ResponseWrapper<Collection<FoodPost>> getPostByKeyword(@PathVariable(value = "keyword") String keyword, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Collection<FoodPost>> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -38,9 +38,9 @@ public class LocationController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/feed/{lat}/{lon}/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/feed/{lat}/{lon}")
     public @ResponseBody
-    ResponseWrapper<Collection<FoodPost>> getPostNear(@PathVariable(value = "lat") float lat, @PathVariable(value = "lon") float lon, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<Collection<FoodPost>> getPostNear(@PathVariable(value = "lat") float lat, @PathVariable(value = "lon") float lon, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Collection<FoodPost>> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -54,9 +54,9 @@ public class LocationController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/location/near/{lat}/{lon}/{token}")
+    @RequestMapping(method = RequestMethod.GET, value = "/location/near/{lat}/{lon}")
     public @ResponseBody
-    ResponseWrapper<Collection<Location>> getLocationNear(@PathVariable(value = "lat") float lat, @PathVariable(value = "lon") float lon, @PathVariable(value = "token") String tokenString){
+    ResponseWrapper<Collection<Location>> getLocationNear(@PathVariable(value = "lat") float lat, @PathVariable(value = "lon") float lon, @RequestParam(value = "token") String tokenString){
         ResponseWrapper<Collection<Location>> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
