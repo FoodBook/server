@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.FacebookAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.SessionAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticationInfo;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoContent;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoItem;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.User.Profile;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
 import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
 import tk.lenkyun.foodbook.server.Exception.NoPermissionException;
@@ -20,6 +23,7 @@ import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
 import tk.lenkyun.foodbook.server.UserManagement.Exception.DuplicateUserException;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
 
+import java.net.URI;
 import java.util.Collection;
 
 /**
@@ -124,5 +128,33 @@ public class UserManager {
         user.setUserAuthenticationInfo(null);
 
         return user;
+    }
+
+    public User updateProfilePhoto(Token token, PhotoContent photoContent) {
+        if (token.isTimedOut()) {
+            return null;
+        }
+
+        URI uri = photoAdapter.postPhoto(photoContent);
+        PhotoItem photoItem = new PhotoItem(uri, 0, 0);
+
+        return userAdapter.updateUserProfilePicture(userAdapter.getUserById(token.getUid()), photoItem);
+    }
+
+    public User updateUserInfo(Token token, User inputUser) {
+        if(token.isTimedOut())
+            throw new NoPermissionException();
+
+        User user = userAdapter.getUserById(token.getUid());
+
+        if(inputUser.getProfile() != null) {
+            Profile profile = user.getProfile();
+            Profile profileI = inputUser.getProfile();
+
+            profile.setFirstname(profileI.getFirstname() == null ? profileI.getFirstname() : profile.getFirstname());
+            profile.setLastname(profileI.getLastname() == null ? profileI.getLastname() : profile.getLastname());
+        }
+
+        return userAdapter.updateUser(user);
     }
 }

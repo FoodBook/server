@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.Authentication.UserAuthenticationInfo;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.FoodPost;
+import tk.lenkyun.foodbook.foodbook.Domain.Data.Photo.PhotoContent;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
+import tk.lenkyun.foodbook.foodbook.Domain.Operation.RegistrationBuilder;
 import tk.lenkyun.foodbook.foodbook.ResponseWrapper;
 import tk.lenkyun.foodbook.server.Exception.NoPermissionException;
 import tk.lenkyun.foodbook.server.PostManagement.PostFeed;
 import tk.lenkyun.foodbook.server.UserManagement.Adapter.UserAdapter;
+import tk.lenkyun.foodbook.server.UserManagement.Exception.DuplicateUserException;
 import tk.lenkyun.foodbook.server.UserManagement.SessionManager;
 import tk.lenkyun.foodbook.server.UserManagement.UserManager;
 import tk.lenkyun.foodbook.server.UserManagement.Utils.Token;
@@ -32,6 +35,109 @@ public class UserController {
     PostFeed postFeed;
     @Autowired
     UserManager userManager;
+
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    public @ResponseBody
+    ResponseWrapper<Boolean> userChangeInfo(@RequestBody RegistrationBuilder register){
+        ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
+
+        if(register.getAuthenticationInfo() == null ||
+                register.getProfilePicture() == null ||
+                register.getProfilePicture().getContent().length == 0 ||
+                register.getFirstname() == null ||
+                register.getLastname() == null ||
+                register.getUsername() == null
+                ){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Missing required arguments.");
+        }
+
+        if(register.getUsername() == null || register.getUsername().trim().length() < 6){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Username length too short.");
+        }
+
+        try {
+            User userOut = userManager.register(register);
+        }catch (DuplicateUserException e){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Token expired.");
+        }
+
+        return responseWrapper;
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me")
+    public @ResponseBody
+    ResponseWrapper<User> userChangeInfo(@RequestParam(value="token") String tokenString,
+                                                   @RequestBody User inputUser){
+        ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        try {
+            User userOut = userManager.updateUserInfo(token, inputUser);
+            if (userOut == null) {
+                responseWrapper.setError(1);
+                responseWrapper.setDetail("Token expired.");
+            } else {
+                responseWrapper.setResult(userOut);
+            }
+        }catch (NoPermissionException e){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Token expired.");
+        }
+
+        return responseWrapper;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/profile_picture")
+    public @ResponseBody
+    ResponseWrapper<User> userChangeProfilePicture(@RequestParam(value="token") String tokenString,
+                                             @RequestBody PhotoContent inputContent){
+        ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
+        Token token = tokenProvider.decodeToken(tokenString);
+
+        if(token == null){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Invalid token.");
+            return responseWrapper;
+        }
+
+        if(inputContent.getContent() == null || inputContent.getContent().length == 0){
+            responseWrapper.setError(2);
+            responseWrapper.setDetail("Invalid input.");
+            return responseWrapper;
+        }
+
+        ResponseWrapper<User> user = requestUserInfo(token.getUid(), tokenString);
+        if(user.getError() != 0){
+            responseWrapper.setError(user.getError());
+            responseWrapper.setDetail(user.getDetail());
+            return responseWrapper;
+        }
+
+        try {
+            User userOut = userManager.updateProfilePhoto(token, inputContent);
+            if (userOut == null) {
+                responseWrapper.setError(1);
+                responseWrapper.setDetail("Token expired.");
+            } else {
+                responseWrapper.setResult(userOut);
+            }
+        }catch (NoPermissionException e){
+            responseWrapper.setError(1);
+            responseWrapper.setDetail("Token expired.");
+        }
+
+        return responseWrapper;
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/me/password")
     public @ResponseBody

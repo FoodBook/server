@@ -8,6 +8,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import tk.lenkyun.foodbook.foodbook.Domain.Data.User.User;
+import tk.lenkyun.foodbook.foodbook.Utils.Base64Utils;
 
 import javax.crypto.*;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class TokenProvider {
     }
 
     public Token decodeToken(String token){
-        byte[] bytes = Base64.decodeBase64(token);
+        byte[] bytes = Base64Utils.decode(token);
         ObjectMapper mapper = new ObjectMapper();
 
         try {
@@ -79,7 +80,7 @@ public class TokenProvider {
             desCipher.init(Cipher.ENCRYPT_MODE, secret);
 
             byte[] encrypted = desCipher.doFinal(bytes);
-            return Base64.encodeBase64String(encrypted);
+            return Base64Utils.encode(encrypted);
         }
         catch (NoSuchAlgorithmException | IllegalBlockSizeException | BadPaddingException | InvalidKeyException | NoSuchPaddingException | JsonProcessingException ignored) {}
 

@@ -47,7 +47,9 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         SqlRowSet result = queryForRowSet(query.toString(), parameters);
 
         if(result.next()){
-            return new UserParser().from(result);
+            User user = new UserParser().from(result);
+            user.setFollowing(getAllFollowingUser(user));
+            return user;
         }
         return null;
     }
@@ -64,7 +66,9 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         SqlRowSet result = queryForRowSet(query.toString(), parameters);
 
         if(result.next()){
-            return new UserParser().from(result);
+            User user = new UserParser().from(result);
+            user.setFollowing(getAllFollowingUser(user));
+            return user;
         }
         return null;
     }
@@ -81,7 +85,9 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         SqlRowSet result = queryForRowSet(query.toString(), parameters);
 
         if(result.next()){
-            return new UserParser().from(result);
+            User user = new UserParser().from(result);
+            user.setFollowing(getAllFollowingUser(user));
+            return user;
         }
 
         return null;
@@ -100,7 +106,9 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         SqlRowSet result = queryForRowSet(query.toString(), parameters);
 
         if(result.next()){
-            return new UserParser().from(result);
+            User user = new UserParser().from(result);
+            user.setFollowing(getAllFollowingUser(user));
+            return user;
         }
 
         return null;
@@ -247,6 +255,22 @@ public class SQLUserAdapter extends JdbcTemplate implements UserAdapter {
         );
         Object[] value = new Object[]{
                 authen.getInfo(),
+                user.getId()
+        };
+
+        update(querer, value);
+        return getUserById(user.getId());
+    }
+
+    @Override
+    public User updateUserProfilePicture(User user, PhotoItem photoItem) {
+        String querer = String.format("update %s SET %s = ? WHERE %s = ?",
+                env.getProperty("database.table.user"),
+                UserMapper.PROFILE_IMAGE,
+                UserMapper.UID
+        );
+        Object[] value = new Object[]{
+                photoItem.getReferal().toString(),
                 user.getId()
         };
 

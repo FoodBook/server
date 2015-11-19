@@ -28,4 +28,6 @@ public interface UserAdapter {
     Collection<User> getAllFollowingUser(User user);
 
     User updateUserAuthen(User user, UserAuthenticationInfo authen);
+
+    User updateUserProfilePicture(User user, PhotoItem photoItem);
 }
