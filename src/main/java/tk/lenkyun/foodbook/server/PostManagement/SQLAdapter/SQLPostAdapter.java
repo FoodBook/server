@@ -268,7 +268,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
                                     "INNER JOIN user " +
                                     "ON user.uid = post.uid " +
                                     "WHERE loc_lat > %f AND loc_lat < %f AND loc_lng > %f AND loc_lng < %f" +
-                                    "HAVING distance < %f ORDER BY distance LIMIT 0 , 50",
+                                    "HAVING distance < %f ORDER BY create_date, distance LIMIT 0 , 50",
                             latLng.latitude, latLng.longitude, latLng.latitude,
                             latLng.latitude - 0.2, latLng.latitude + 0.2, latLng.longitude - 0.2, latLng.longitude + 0.2,
                             range),
