@@ -39,7 +39,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, value = "/register")
     public @ResponseBody
     ResponseWrapper<Boolean> userChangeInfo(@RequestBody RegistrationBuilder register){
-        ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
+        ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
 
         if(register.getAuthenticationInfo() == null ||
                 register.getProfilePicture() == null ||
@@ -59,6 +59,7 @@ public class UserController {
 
         try {
             User userOut = userManager.register(register);
+            responseWrapper.setResult(userOut != null);
         }catch (DuplicateUserException e){
             responseWrapper.setError(1);
             responseWrapper.setDetail("Token expired.");
