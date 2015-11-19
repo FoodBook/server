@@ -20,9 +20,9 @@ public class CommentController {
     @Autowired
     PostFeed postFeed;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/comment/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/comment/{id}/{token}")
     public @ResponseBody
-    ResponseWrapper<Comment> updateComment(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString,
+    ResponseWrapper<Comment> updateComment(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString,
         @RequestBody Comment inputComment)
     {
         ResponseWrapper<Comment> responseWrapper = new ResponseWrapper<>();
@@ -62,9 +62,9 @@ public class CommentController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/comment/{id}/delete")
+    @RequestMapping(method = RequestMethod.GET, value = "/comment/{id}/delete/{token}")
     public @ResponseBody
-    ResponseWrapper<Comment> deleteComment(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Comment> deleteComment(@PathVariable(value = "id") String id, @PathVariable(value = "token")  String tokenString){
         ResponseWrapper<Comment> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -90,9 +90,9 @@ public class CommentController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/comment/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/comment/{id}/{token}")
     public @ResponseBody
-    ResponseWrapper<Comment> getComment(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Comment> getComment(@PathVariable(value = "id") String id, @PathVariable(value = "token")  String tokenString){
         ResponseWrapper<Comment> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 

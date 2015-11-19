@@ -69,9 +69,9 @@ public class UserController {
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/me")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/{token}")
     public @ResponseBody
-    ResponseWrapper<User> userChangeInfo(@RequestParam(value="token") String tokenString,
+    ResponseWrapper<User> userChangeInfo(@PathVariable(value = "token") String tokenString,
                                                    @RequestBody User inputUser){
         ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -98,9 +98,9 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/me/profile_picture")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/profile_picture/{token}")
     public @ResponseBody
-    ResponseWrapper<User> userChangeProfilePicture(@RequestParam(value="token") String tokenString,
+    ResponseWrapper<User> userChangeProfilePicture(@PathVariable(value = "token") String tokenString,
                                              @RequestBody PhotoContent inputContent){
         ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -140,9 +140,9 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/me/password")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/me/password/{token}")
     public @ResponseBody
-    ResponseWrapper<User> userChangePassword(@RequestParam(value="token") String tokenString,
+    ResponseWrapper<User> userChangePassword(@PathVariable(value = "token") String tokenString,
                                                  @RequestBody UserAuthenticationInfo inputAuthen){
         ResponseWrapper<User> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
@@ -184,8 +184,8 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/me")
-    public ResponseWrapper<User> requestMe(@RequestParam(value = "token", required = false) String token){
+    @RequestMapping(method = RequestMethod.GET, value = "/user/me/{token}")
+    public ResponseWrapper<User> requestMe(@PathVariable(value = "token") String token){
         ResponseWrapper<User> wrapper = new ResponseWrapper<>();
 
         if(token != null && sessionManager.isTokenValid(token)){
@@ -207,8 +207,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/{uid}")
-    public ResponseWrapper<User> requestUserInfo(@PathVariable(value = "uid") String uid, @RequestParam(value = "token") String token){
+    @RequestMapping(method = RequestMethod.GET, value = "/user/{uid}/{token}")
+    public ResponseWrapper<User> requestUserInfo(@PathVariable(value = "uid") String uid, @PathVariable(value = "token") String token){
         ResponseWrapper<User> wrapper = new ResponseWrapper<>();
         if(sessionManager.isTokenValid(token)){
             if(tokenProvider.getUserId(token).equals(uid)){
@@ -248,8 +248,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/{uid}/post")
-    public ResponseWrapper<Collection<FoodPost>> requestUserPostInfo(@PathVariable(value = "uid") String uid, @RequestParam(value = "token") String tokenString){
+    @RequestMapping(method = RequestMethod.GET, value = "/user/{uid}/post/{token}")
+    public ResponseWrapper<Collection<FoodPost>> requestUserPostInfo(@PathVariable(value = "uid") String uid, @PathVariable(value = "token") String tokenString){
         ResponseWrapper<Collection<FoodPost>> wrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
         if(token == null){
@@ -276,9 +276,9 @@ public class UserController {
         return wrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}/follow")
+    @RequestMapping(method = RequestMethod.GET, value = "/user/{id}/follow/{token}")
     public @ResponseBody
-    ResponseWrapper<Boolean> getIsFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Boolean> getIsFollowUser(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -311,9 +311,9 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/follow")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/follow/{token}")
     public @ResponseBody
-    ResponseWrapper<Boolean> setFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Boolean> setFollowUser(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -346,9 +346,9 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/unfollow")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/{id}/unfollow/{token}")
     public @ResponseBody
-    ResponseWrapper<Boolean> setUnFollowUser(@PathVariable(value = "id") String id, @RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Boolean> setUnFollowUser(@PathVariable(value = "id") String id, @PathVariable(value = "token") String tokenString){
         ResponseWrapper<Boolean> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 
@@ -381,9 +381,9 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/me/following")
+    @RequestMapping(method = RequestMethod.GET, value = "/user/me/following/{token}")
     public @ResponseBody
-    ResponseWrapper<Collection<User>> getAllFollowUser(@RequestParam(value = "token") String tokenString){
+    ResponseWrapper<Collection<User>> getAllFollowUser(@PathVariable(value = "token") String tokenString){
         ResponseWrapper<Collection<User>> responseWrapper = new ResponseWrapper<>();
         Token token = tokenProvider.decodeToken(tokenString);
 

@@ -47,10 +47,10 @@ public class PostUploadController {
         return builder;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/post")
+    @RequestMapping(method = RequestMethod.POST, value = "/post/{token}")
     public @ResponseBody
     ResponseWrapper<FoodPost> foodPostCreate(
-            @RequestParam(value = "token") String token,
+            @PathVariable(value = "token") String token,
             @RequestBody FoodPostBuilder builder){
 
         Token tokenObj = tokenProvider.decodeToken(token);
