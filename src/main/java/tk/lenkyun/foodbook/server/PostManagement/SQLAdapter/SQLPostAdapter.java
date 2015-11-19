@@ -120,7 +120,7 @@ public class SQLPostAdapter extends JdbcTemplate implements PostAdapter {
         try {
             return queryForObject(String.format("select * from %s where %s = ?",
                             env.getProperty("database.table.comment"),
-                            CommentMapper.ASSOC),
+                            CommentMapper.ID),
                     new Object[]{id}, new CommentMapper());
         }catch(EmptyResultDataAccessException ignored){
             return null;
