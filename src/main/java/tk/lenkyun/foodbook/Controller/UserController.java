@@ -229,7 +229,7 @@ public class UserController {
         return responseWrapper;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/user/me/following")
+    @RequestMapping(method = RequestMethod.GET, value = "/user/me/following")
     public @ResponseBody
     ResponseWrapper<Collection<User>> getAllFollowUser(@RequestParam(value = "token") String tokenString){
         ResponseWrapper<Collection<User>> responseWrapper = new ResponseWrapper<>();
